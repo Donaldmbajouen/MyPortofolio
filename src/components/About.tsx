@@ -21,9 +21,9 @@ const About = () => {
   ];
 
   const stats = [
-    { number: "3+", label: "Années d'expérience" },
-    { number: "50+", label: "Projets réalisés" },
-    { number: "15+", label: "Technologies maîtrisées" },
+    { number: "1+", label: "Années d'expérience" },
+    { number: "15+", label: "Projets réalisés" },
+    { number: "05+", label: "Technologies maîtrisées" },
     { number: "100%", label: "Clients satisfaits" }
   ];
 
@@ -39,13 +39,12 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Développeur web passionné avec plus de 3 ans d'expérience dans la création 
+                  Développeur web passionné avec plus de 01 ans d'expérience dans la création 
                   d'applications modernes et performantes. Mon approche se concentre sur 
                   <span className="text-primary font-medium"> l'efficacité, la rapidité et l'innovation</span>.
                 </p>
                 <p>
-                  Inspiré par l'écosystème Bolt et sa philosophie de solutions rapides et fiables, 
-                  je développe des applications qui transforment les idées en produits digitaux concrets. 
+                  Je développe des applications qui transforment les idées en produits digitaux concrets. 
                   Mon objectif : créer des expériences utilisateur exceptionnelles tout en maintenant 
                   une architecture technique robuste.
                 </p>

@@ -14,17 +14,17 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: <Github className="w-5 h-5" />,
-      href: "https://github.com",
+      href: "https://github.com/Donaldmbajouen", 
       label: "GitHub"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/donald-njemi-mbajouen-741889284/",
       label: "LinkedIn"
     },
     {
       icon: <Mail className="w-5 h-5" />,
-      href: "mailto:donald.mbajouen@email.com",
+      href: "mailto:mbajouend@gmail.com",
       label: "Email"
     }
   ];
@@ -51,7 +51,7 @@ const Footer = () => {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Code className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold text-foreground">DevBolt</span>
+              <span className="text-xl font-bold text-foreground">Njemi Mbajouen</span>
             </div>
             <p className="text-muted-foreground max-w-md">
               Développeur web passionné, créant des solutions tech rapides et efficaces. 
@@ -94,9 +94,9 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Contact</h3>
             <div className="space-y-2 text-muted-foreground">
-              <p>donald.mbajouen@email.com</p>
-              <p>+33 6 12 34 56 78</p>
-              <p>Paris, France</p>
+              <p>mbajouend@gmail.com</p>
+              <p>+237679315698</p>
+              <p>Yaounde, Cameroun</p>
             </div>
             <div className="mt-4">
               <div className="flex items-center space-x-2 text-sm">

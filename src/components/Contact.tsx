@@ -49,19 +49,19 @@ const Contact = () => {
     {
       icon: <Mail className="w-5 h-5" />,
       title: "Email",
-      content: "donald.mbajouen@email.com",
-      href: "mailto:donald.mbajouen@email.com"
+      content: "mbajouend@gmail.com",
+      href: "mailto:mbajouend@gmail.com"
     },
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Téléphone",
-      content: "+33 6 12 34 56 78",
-      href: "tel:+33612345678"
+      content: "+237 679315698",
+      href: "tel:+237679315698"
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Localisation",
-      content: "Paris, France",
+      content: "Yaoundé, Cameroun",
       href: "#"
     }
   ];
@@ -70,21 +70,16 @@ const Contact = () => {
     {
       icon: <Github className="w-5 h-5" />,
       name: "GitHub",
-      href: "https://github.com",
+      href: "https://github.com/Donaldmbajouen",
       color: "hover:text-gray-900 dark:hover:text-gray-100"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       name: "LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/donald-njemi-mbajouen-741889284/",
       color: "hover:text-blue-600"
-    },
-    {
-      icon: <Twitter className="w-5 h-5" />,
-      name: "Twitter",
-      href: "https://twitter.com",
-      color: "hover:text-blue-400"
     }
+    
   ];
 
   return (
