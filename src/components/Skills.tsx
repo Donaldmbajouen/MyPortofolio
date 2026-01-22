@@ -9,9 +9,8 @@ const Skills = () => {
       icon: <Globe className="w-6 h-6" />,
       color: "text-blue-500",
       skills: [
-        { name: "React/Next.js", level: 90 },
-        { name: "Vue.js/Nuxt.js", level: 85 },
-        { name: "TypeScript", level: 88 },
+        { name: "React", level: 60 },
+        { name: "Vue.js", level: 80 },
         { name: "Tailwind CSS", level: 92 }
       ]
     },
@@ -21,9 +20,8 @@ const Skills = () => {
       color: "text-green-500",
       skills: [
         { name: "Laravel/PHP", level: 87 },
-        { name: "Node.js", level: 82 },
-        { name: "Python/Django", level: 75 },
-        { name: "API REST/GraphQL", level: 85 }
+        { name: "Python/Django", level: 40 },
+        { name: "API REST", level: 85 }
       ]
     },
     {
@@ -32,9 +30,7 @@ const Skills = () => {
       color: "text-purple-500",
       skills: [
         { name: "MySQL/PostgreSQL", level: 85 },
-        { name: "MongoDB", level: 80 },
         { name: "Redis", level: 75 },
-        { name: "Prisma/Eloquent", level: 88 }
       ]
     },
     {
@@ -44,8 +40,6 @@ const Skills = () => {
       skills: [
         { name: "Docker", level: 80 },
         { name: "Git/GitHub", level: 90 },
-        { name: "CI/CD", level: 75 },
-        { name: "AWS/Vercel", level: 78 }
       ]
     },
     {
@@ -53,23 +47,10 @@ const Skills = () => {
       icon: <Smartphone className="w-6 h-6" />,
       color: "text-pink-500",
       skills: [
-        { name: "React Native", level: 80 },
         { name: "Flutter/Dart", level: 70 },
-        { name: "Capacitor", level: 75 },
-        { name: "PWA", level: 85 }
       ]
     },
-    {
-      title: "Design & UX",
-      icon: <Palette className="w-6 h-6" />,
-      color: "text-indigo-500",
-      skills: [
-        { name: "Figma", level: 85 },
-        { name: "Adobe XD", level: 80 },
-        { name: "UI/UX Design", level: 82 },
-        { name: "Prototyping", level: 88 }
-      ]
-    }
+    
   ];
 
   const getProgressColor = (level: number) => {

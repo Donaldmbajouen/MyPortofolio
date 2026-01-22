@@ -13,7 +13,7 @@ const Projects = () => {
       description: "Application de réservation de courses inspirée de l'écosystème Bolt. Interface moderne avec géolocalisation en temps réel.",
       image: projectBoltride,
       technologies: ["React", "TypeScript", "Tailwind CSS", "Mapbox"],
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/Donaldmbajouen",
       demoUrl: "https://demo.com",
       date: "2024"
     },
@@ -22,7 +22,7 @@ const Projects = () => {
       description: "Plateforme de livraison éco-responsable avec suivi carbone et options de transport vert.",
       image: projectEcodelivery,
       technologies: ["Vue.js", "Laravel", "MySQL", "Docker"],
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/Donaldmbajouen",
       demoUrl: "https://demo.com",
       date: "2024"
     },
@@ -31,7 +31,7 @@ const Projects = () => {
       description: "Tableau de bord analytique pour startups avec visualisations de données en temps réel et KPIs business.",
       image: projectDashboard,
       technologies: ["React", "Chart.js", "Node.js", "MongoDB"],
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/Donaldmbajouen",
       demoUrl: "https://demo.com",
       date: "2023"
     },
@@ -40,7 +40,7 @@ const Projects = () => {
       description: "API REST pour marketplace de produits locaux avec système de paiement intégré et gestion des vendeurs.",
       image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&h=300&fit=crop",
       technologies: ["Laravel", "PostgreSQL", "Redis", "Stripe"],
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/Donaldmbajouen",
       demoUrl: "https://demo.com",
       date: "2023"
     },
@@ -49,7 +49,7 @@ const Projects = () => {
       description: "Extension Chrome pour développeurs avec outils de debugging avancés et analyseur de performance.",
       image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&h=300&fit=crop",
       technologies: ["JavaScript", "Chrome API", "Webpack", "CSS3"],
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/Donaldmbajouen",
       demoUrl: "https://demo.com",
       date: "2023"
     },
@@ -58,7 +58,7 @@ const Projects = () => {
       description: "Bot Slack/Discord pour automatiser les tâches récurrentes d'équipe et notifications de projet.",
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=300&fit=crop",
       technologies: ["Python", "Discord.py", "PostgreSQL", "Heroku"],
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/Donaldmbajouen",
       demoUrl: "https://demo.com",
       date: "2022"
     }
