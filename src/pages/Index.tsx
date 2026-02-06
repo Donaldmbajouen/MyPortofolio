@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import CVLayout from '@/layouts/CVLayout';
 import Hero from '@/components/Hero';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
@@ -9,18 +9,15 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <Hero />
-        <Projects />
-        <Skills />
-        <About />
-        <Contact />
-      </main>
+    <CVLayout>
+      <Hero />
+      <Projects />
+      <Skills />
+      <About />
+      <Contact />
       <Footer />
       <ScrollToTop />
-    </div>
+    </CVLayout>
   );
 };
 

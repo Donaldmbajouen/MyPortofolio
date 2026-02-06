@@ -4,67 +4,49 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { label: 'Accueil', href: '#accueil' },
-    { label: 'Projets', href: '#projets' },
-    { label: 'Compétences', href: '#competences' },
-    { label: 'À propos', href: '#apropos' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Accueil', href: 'accueil' },
+    { label: 'Projets', href: 'projets' },
+    { label: 'Compétences', href: 'competences' },
+    { label: 'À propos', href: 'apropos' },
+    { label: 'Contact', href: 'contact' }
   ];
 
   const socialLinks = [
-    {
-      icon: <Github className="w-5 h-5" />,
-      href: "https://github.com/Donaldmbajouen", 
-      label: "GitHub"
-    },
-    {
-      icon: <Linkedin className="w-5 h-5" />,
-      href: "https://www.linkedin.com/in/donald-njemi-mbajouen-741889284/",
-      label: "LinkedIn"
-    },
-    {
-      icon: <Mail className="w-5 h-5" />,
-      href: "mailto:mbajouend@gmail.com",
-      label: "Email"
-    }
+    { icon: <Github className="w-4 h-4" />, href: "https://github.com/Donaldmbajouen", label: "GitHub" },
+    { icon: <Linkedin className="w-4 h-4" />, href: "https://www.linkedin.com/in/donald-njemi-mbajouen-741889284/", label: "LinkedIn" },
+    { icon: <Mail className="w-4 h-4" />, href: "mailto:mbajouend@gmail.com", label: "Email" }
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer className="bg-muted/30 border-t border-border">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Main footer content */}
-        <div className="py-12 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-muted/50 border-t border-border py-8">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Code className="w-5 h-5 text-primary-foreground" />
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center">
+                <Code className="w-4 h-4 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold text-foreground">Njemi Mbajouen</span>
+              <span className="text-lg font-bold text-foreground">Donald Mbajouen</span>
             </div>
-            <p className="text-muted-foreground max-w-md">
-              Développeur web passionné, créant des solutions tech rapides et efficaces. 
-              Spécialisé dans le développement d'applications modernes et performantes.
+            <p className="text-sm text-muted-foreground">
+              Développeur Full Stack spécialisé Laravel, Vue.js et Flutter.
             </p>
-            <div className="flex space-x-4 pt-2">
+            <div className="flex gap-2">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-background hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-8 h-8 bg-card border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary rounded-lg flex items-center justify-center transition-all"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -75,13 +57,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Navigation</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-foreground mb-3 text-sm">Navigation</h3>
+            <ul className="space-y-1.5">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.label}
                   </button>
@@ -90,43 +72,31 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Contact</h3>
-            <div className="space-y-2 text-muted-foreground">
+            <h3 className="font-semibold text-foreground mb-3 text-sm">Contact</h3>
+            <div className="space-y-1.5 text-sm text-muted-foreground">
               <p>mbajouend@gmail.com</p>
-              <p>+237679315698</p>
-              <p>Yaounde, Cameroun</p>
+              <p>+237 679 315 698</p>
+              <p>Yaoundé, Cameroun</p>
             </div>
-            <div className="mt-4">
-              <div className="flex items-center space-x-2 text-sm">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-muted-foreground">Disponible pour de nouveaux projets</span>
-              </div>
+            <div className="mt-3 flex items-center gap-2 text-xs">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-muted-foreground">Disponible</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="py-6 border-t border-border">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <span>&copy; {currentYear} Donald Mbajouen. Tous droits réservés.</span>
-            </div>
-            
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <span>Fait avec</span>
-              <Heart className="w-4 h-4 text-red-500 animate-pulse" />
-              <span>et beaucoup de</span>
-              <span className="text-primary font-medium">☕</span>
-            </div>
-
-            <button
-              onClick={scrollToTop}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-            >
-              Retour en haut ↑
-            </button>
+        {/* Bottom */}
+        <div className="pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground">
+            © {currentYear} Donald Mbajouen. Tous droits réservés.
+          </p>
+          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <span>Fait avec</span>
+            <Heart className="w-3 h-3 text-destructive" />
+            <span>et</span>
+            <span className="text-primary">☕</span>
           </div>
         </div>
       </div>
