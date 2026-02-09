@@ -1,24 +1,7 @@
-import CVLayout from '@/layouts/CVLayout';
-import Hero from '@/components/Hero';
-import Projects from '@/components/Projects';
-import Skills from '@/components/Skills';
-import About from '@/components/About';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
+import CVPage from '@/components/cv/CVPage';
 
 const Index = () => {
-  return (
-    <CVLayout>
-      <Hero />
-      <Projects />
-      <Skills />
-      <About />
-      <Contact />
-      <Footer />
-      <ScrollToTop />
-    </CVLayout>
-  );
+  return <CVPage />;
 };
 
 export default Index;
