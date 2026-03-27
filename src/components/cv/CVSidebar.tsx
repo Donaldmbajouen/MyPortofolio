@@ -7,7 +7,7 @@ import {
   Github,
   Calendar
 } from 'lucide-react';
-import profilePhoto from '@/assets/profile-photo.png';
+import profilePhoto from '@/assets/donald.png';
 
 const CVSidebar = () => {
   return (

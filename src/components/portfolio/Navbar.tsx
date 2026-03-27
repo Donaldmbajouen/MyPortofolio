@@ -12,7 +12,6 @@ const navLinks = [
 ];
 
 const langLabels: Record<LanguageTheme, string> = {
-  react: 'React',
   laravel: 'Laravel',
   vue: 'Vue',
   flutter: 'Flutter',

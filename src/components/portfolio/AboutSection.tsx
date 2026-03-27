@@ -21,6 +21,7 @@ const useInView = (ref: React.RefObject<HTMLElement>) => {
 };
 
 import { useRef, useState, useEffect } from 'react';
+import heroImage from '@/assets/hero-image.jpg';
 
 const AboutSection = () => {
   const ref = useRef<HTMLElement>(null);
@@ -38,15 +39,26 @@ const AboutSection = () => {
           <p className="text-primary font-medium mb-2">Qui suis-je</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">À Propos De Moi</h2>
           <div className="w-16 h-1 bg-primary rounded-full mb-6" />
-          <div className="max-w-3xl space-y-4">
-            <p className="text-muted-foreground leading-relaxed">
-              Jeune professionnel passionné par le développement web et mobile, doté d'une expérience concrète 
-              dans la création d'applications complètes avec Laravel, Vue.js, Nuxt.js et Flutter.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Proactif, adaptable, et engagé dans une démarche d'apprentissage continu. Ma détermination 
-              et ma soif d'apprendre font de moi un développeur prometteur dans le domaine du numérique.
-            </p>
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            {/* Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="w-48 h-56 md:w-56 md:h-64 rounded-2xl overflow-hidden ring-4 ring-primary/20 shadow-xl flex-shrink-0"
+            >
+              <img src={heroImage} alt="Donald Njemi" className="w-full h-full object-cover" />
+            </motion.div>
+            <div className="space-y-4">
+              <p className="text-muted-foreground leading-relaxed">
+                Jeune professionnel passionné par le développement web et mobile, doté d'une expérience concrète 
+                dans la création d'applications complètes avec Laravel, Vue.js, Nuxt.js et Flutter.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Proactif, adaptable, et engagé dans une démarche d'apprentissage continu. Ma détermination 
+                et ma soif d'apprendre font de moi un développeur prometteur dans le domaine du numérique.
+              </p>
+            </div>
           </div>
         </motion.div>
 

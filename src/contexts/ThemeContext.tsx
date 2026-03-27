@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-export type LanguageTheme = 'react' | 'laravel' | 'vue' | 'flutter';
+export type LanguageTheme = 'laravel' | 'vue' | 'flutter';
 export type ColorMode = 'light' | 'dark';
 
 interface ThemeContextType {

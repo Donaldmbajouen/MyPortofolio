@@ -32,7 +32,6 @@ const FlutterIcon = () => (
 );
 
 const languageIcons: Record<LanguageTheme, { icon: React.ReactNode; label: string }> = {
-  react: { icon: <ReactIcon />, label: 'React' },
   laravel: { icon: <LaravelIcon />, label: 'Laravel' },
   vue: { icon: <VueIcon />, label: 'Vue.js' },
   flutter: { icon: <FlutterIcon />, label: 'Flutter' }
