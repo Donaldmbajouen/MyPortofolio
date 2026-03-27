@@ -5,40 +5,70 @@ import { useState } from 'react';
 
 const projects = [
   {
-    title: "EcoDelivery Platform",
-    description: "Plateforme web de livraison éco-responsable avec suivi carbone et tableau de bord admin complet.",
-    technologies: ["Vue.js", "Nuxt.js", "Laravel", "MySQL"],
-    category: "web"
+    title: "Raoul Project",
+    description: "Site web professionnel d'entreprise développé avec Laravel et Blade, design moderne et responsive.",
+    technologies: ["Laravel", "Blade", "PHP", "Tailwind"],
+    category: "web",
+    github: "https://github.com/Donaldmbajouen/raoul_project",
+    live: "https://raoul-project.vercel.app"
   },
   {
-    title: "BoltRide App",
-    description: "Application mobile de réservation de courses avec géolocalisation temps réel et notifications push.",
-    technologies: ["Flutter", "Dart", "Firebase", "Google Maps"],
-    category: "mobile"
+    title: "Fusion Fitness",
+    description: "Site web complet pour une salle de sport complexe avec réservation et gestion des abonnements.",
+    technologies: ["TypeScript", "React", "Tailwind"],
+    category: "web",
+    github: "https://github.com/Donaldmbajouen/fusion_fitness",
+    live: "https://fusion-fitness.vercel.app"
   },
   {
-    title: "Smart Dashboard",
-    description: "Tableau de bord analytique SaaS avec visualisations de données en temps réel et exports.",
-    technologies: ["Vue.js", "Chart.js", "Laravel", "PostgreSQL"],
-    category: "web"
+    title: "Power Fitness",
+    description: "Plateforme web pour salle de sport avec programmes d'entraînement et suivi de progression.",
+    technologies: ["TypeScript", "React", "Tailwind"],
+    category: "web",
+    github: "https://github.com/Donaldmbajouen/power_fitness",
+    live: "https://power-fitness.vercel.app"
   },
   {
-    title: "GreenMarket API",
-    description: "API REST pour marketplace de produits locaux avec système de paiement intégré.",
-    technologies: ["Laravel", "PostgreSQL", "Redis", "Stripe"],
-    category: "web"
+    title: "EduAI",
+    description: "Application d'apprentissage adaptatif et personnalisé basée sur l'intelligence artificielle.",
+    technologies: ["Laravel", "PHP", "MySQL", "AI"],
+    category: "web",
+    github: "https://github.com/Donaldmbajouen/EduAI_back"
   },
   {
-    title: "AgriTech IoT",
-    description: "Application IoT pour le monitoring agricole avec capteurs et dashboard temps réel.",
-    technologies: ["Flutter", "Arduino", "Firebase", "MQTT"],
-    category: "mobile"
+    title: "Application RDV",
+    description: "Application mobile de prise de rendez-vous pour prestataires de services avec notifications.",
+    technologies: ["Flutter", "Dart", "Firebase"],
+    category: "mobile",
+    github: "https://github.com/Donaldmbajouen/application_rdv"
   },
   {
-    title: "School Manager",
-    description: "Solution de gestion scolaire complète avec gestion des notes, absences et emplois du temps.",
-    technologies: ["Laravel", "Vue.js", "MySQL", "Tailwind"],
-    category: "web"
+    title: "Dolicash",
+    description: "Application mobile de gestion financière avec suivi des transactions et tableau de bord.",
+    technologies: ["Flutter", "Dart", "Firebase"],
+    category: "mobile",
+    github: "https://github.com/Donaldmbajouen/Dolicash"
+  },
+  {
+    title: "Pharmacie App",
+    description: "Application mobile de gestion de pharmacie avec inventaire et suivi des ventes.",
+    technologies: ["Flutter", "Dart"],
+    category: "mobile",
+    github: "https://github.com/Donaldmbajouen/pharmacie2"
+  },
+  {
+    title: "Event Gate Hub",
+    description: "Plateforme de gestion d'événements avec billetterie et contrôle d'accès.",
+    technologies: ["TypeScript", "React", "Tailwind"],
+    category: "web",
+    github: "https://github.com/Donaldmbajouen/event-gate-hub"
+  },
+  {
+    title: "Traducteur Laravel",
+    description: "Outil de traduction automatisé pour applications Laravel multi-langues.",
+    technologies: ["Laravel", "PHP"],
+    category: "web",
+    github: "https://github.com/Donaldmbajouen/Traducteur-Laravel"
   }
 ];
 
@@ -103,12 +133,14 @@ const ProjectsSection = () => {
               <div className="flex items-start justify-between mb-4">
                 <Badge variant="outline" className="text-xs capitalize">{project.category}</Badge>
                 <div className="flex gap-2">
-                  <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
                     <Github className="w-4 h-4" />
                   </a>
-                  <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+                  {project.live && (
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
 

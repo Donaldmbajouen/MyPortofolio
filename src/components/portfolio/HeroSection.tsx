@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import profilePhoto from '@/assets/donald.png';
+import donaldPhoto from '@/assets/donald.png';
 
 const HeroSection = () => {
   const scrollTo = (id: string) => {
@@ -58,19 +58,21 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Photo */}
+        {/* Photo - Large portrait, no border */}
         <motion.div
-          className="flex justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
+          className="flex justify-center md:justify-end"
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="relative">
-            <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden ring-4 ring-primary/20 shadow-2xl shadow-primary/10">
-              <img src={profilePhoto} alt="Donald Njemi" className="w-full h-full object-cover" />
-            </div>
-            {/* Decorative ring */}
-            <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20 scale-[1.15] animate-[spin_20s_linear_infinite]" />
+          <div className="relative w-80 h-[28rem] md:w-96 md:h-[32rem]">
+            <img 
+              src={donaldPhoto} 
+              alt="Donald Njemi" 
+              className="w-full h-full object-cover object-top rounded-3xl"
+            />
+            {/* Subtle gradient overlay at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background/60 to-transparent rounded-b-3xl" />
           </div>
         </motion.div>
       </div>

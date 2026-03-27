@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Server, Palette, Cpu, Globe } from 'lucide-react';
+import heroImage from '@/assets/hero-image.jpg';
 
 const services = [
   { icon: Globe, title: "Développement Web", description: "Applications web modernes avec Laravel, Vue.js, Nuxt.js et React." },
@@ -10,24 +11,9 @@ const services = [
   { icon: Cpu, title: "IoT & Systèmes", description: "Solutions embarquées, applications IoT et projets AgriTech." }
 ];
 
-const useInView = (ref: React.RefObject<HTMLElement>) => {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.1 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [ref]);
-  return inView;
-};
-
-import { useRef, useState, useEffect } from 'react';
-import heroImage from '@/assets/hero-image.jpg';
-
 const AboutSection = () => {
-  const ref = useRef<HTMLElement>(null);
-
   return (
-    <section id="apropos" className="py-20 md:py-28" ref={ref}>
+    <section id="apropos" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -38,18 +24,11 @@ const AboutSection = () => {
         >
           <p className="text-primary font-medium mb-2">Qui suis-je</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">À Propos De Moi</h2>
-          <div className="w-16 h-1 bg-primary rounded-full mb-6" />
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            {/* Photo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="w-48 h-56 md:w-56 md:h-64 rounded-2xl overflow-hidden ring-4 ring-primary/20 shadow-xl flex-shrink-0"
-            >
-              <img src={heroImage} alt="Donald Njemi" className="w-full h-full object-cover" />
-            </motion.div>
-            <div className="space-y-4">
+          <div className="w-16 h-1 bg-primary rounded-full mb-8" />
+          
+          <div className="flex flex-col md:flex-row gap-10 items-center">
+            {/* Text - Left */}
+            <div className="flex-1 space-y-4">
               <p className="text-muted-foreground leading-relaxed">
                 Jeune professionnel passionné par le développement web et mobile, doté d'une expérience concrète 
                 dans la création d'applications complètes avec Laravel, Vue.js, Nuxt.js et Flutter.
@@ -58,28 +37,37 @@ const AboutSection = () => {
                 Proactif, adaptable, et engagé dans une démarche d'apprentissage continu. Ma détermination 
                 et ma soif d'apprendre font de moi un développeur prometteur dans le domaine du numérique.
               </p>
-            </div>
-          </div>
-        </motion.div>
 
-        {/* Stats */}
-        <motion.div
-          className="grid grid-cols-3 gap-6 mb-16 max-w-xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          {[
-            { value: '2+', label: "Années d'exp." },
-            { value: '10+', label: 'Projets' },
-            { value: '5+', label: 'Technologies' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center p-5 rounded-xl bg-card border border-border">
-              <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 pt-4">
+                {[
+                  { value: '2+', label: "Années d'exp." },
+                  { value: '10+', label: 'Projets' },
+                  { value: '5+', label: 'Technologies' },
+                ].map((stat) => (
+                  <div key={stat.label} className="text-center p-4 rounded-xl bg-card border border-border">
+                    <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+
+            {/* Photo - Right */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-72 h-80 md:w-80 md:h-96 flex-shrink-0"
+            >
+              <img 
+                src={heroImage} 
+                alt="Donald Njemi" 
+                className="w-full h-full object-cover object-top rounded-3xl"
+              />
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Services Grid */}
