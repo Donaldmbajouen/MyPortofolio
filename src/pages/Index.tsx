@@ -8,6 +8,7 @@ import ProjectsSection from '@/components/portfolio/ProjectsSection';
 import ContactSection from '@/components/portfolio/ContactSection';
 import Footer from '@/components/portfolio/Footer';
 import FloatingBackground from '@/components/portfolio/FloatingBackground';
+import FloatingWhatsApp from '@/components/portfolio/FloatingWhatsApp';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Index = () => {
@@ -28,6 +29,7 @@ const Index = () => {
         <ContactSection />
         <Footer />
       </div>
+      <FloatingWhatsApp />
     </div>
   );
 };
