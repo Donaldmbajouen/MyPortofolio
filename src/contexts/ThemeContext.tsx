@@ -28,7 +28,7 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [languageTheme, setLanguageTheme] = useState<LanguageTheme>(() => {
     const saved = localStorage.getItem('language-theme');
-    return (saved as LanguageTheme) || 'vue';
+    return (saved as LanguageTheme) || 'laravel';
   });
 
   const [colorMode, setColorMode] = useState<ColorMode>(() => {

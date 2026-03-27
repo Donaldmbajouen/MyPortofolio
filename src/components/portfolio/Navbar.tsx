@@ -1,26 +1,65 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme, LanguageTheme } from '@/contexts/ThemeContext';
+import type { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, Moon, Sun, X } from 'lucide-react';
+import { Locale, useLanguage } from '@/contexts/LanguageContext';
+import { LanguageTheme, useTheme } from '@/contexts/ThemeContext';
 
-const navLinks = [
-  { id: 'accueil', label: 'Accueil' },
-  { id: 'apropos', label: 'À propos' },
-  { id: 'competences', label: 'Compétences' },
-  { id: 'projets', label: 'Projets' },
-  { id: 'contact', label: 'Contact' },
-];
+const LaravelIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+    <path d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934c0 .135-.073.26-.189.327l-9.03 5.206a.32.32 0 01-.066.027c-.008.003-.016.007-.025.01-.04.012-.08.012-.12 0-.009-.003-.018-.007-.027-.01a.316.316 0 01-.065-.027L.533 18.755a.375.375 0 01-.19-.326V5.53c0-.035.005-.07.014-.1.003-.012.01-.023.014-.035a.35.35 0 01.028-.053c.007-.012.018-.022.026-.033a.376.376 0 01.036-.035c.01-.008.022-.014.033-.022.013-.008.023-.018.036-.024L4.88 2.706a.375.375 0 01.38 0l4.35 2.506c.013.006.023.016.036.024.011.008.023.014.033.022a.376.376 0 01.036.035c.008.011.019.021.026.033.012.017.02.035.028.053.004.012.011.023.014.035a.364.364 0 01.014.1v9.652l3.761-2.166V7.654c0-.035.005-.07.014-.1.003-.012.01-.023.014-.035a.35.35 0 01.028-.053c.007-.012.018-.022.026-.033a.376.376 0 01.036-.035c.01-.008.022-.014.033-.022.013-.008.023-.018.036-.024l4.35-2.506a.375.375 0 01.38 0l4.35 2.506c.013.006.023.016.036.024.011.008.023.014.033.022z"/>
+  </svg>
+);
 
-const langLabels: Record<LanguageTheme, string> = {
+const VueIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+    <path d="M24 1.61h-9.94L12 5.16 9.94 1.61H0l12 20.78L24 1.61zM12 14.08L5.16 2.23h4.43L12 6.41l2.41-4.18h4.43L12 14.08z"/>
+  </svg>
+);
+
+const FlutterIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+    <path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357L14.314 0zm.014 11.072l-6.471 6.457 6.47 6.471H21.7l-6.46-6.468 6.46-6.46h-7.372z"/>
+  </svg>
+);
+
+const stackLabels: Record<LanguageTheme, string> = {
   laravel: 'Laravel',
   vue: 'Vue',
   flutter: 'Flutter',
+};
+
+const stackIcons: Record<LanguageTheme, ReactNode> = {
+  laravel: <LaravelIcon />,
+  vue: <VueIcon />,
+  flutter: <FlutterIcon />,
+};
+
+const stackColors: Record<LanguageTheme, string> = {
+  laravel: 'text-red-500',
+  vue: 'text-emerald-500',
+  flutter: 'text-sky-400',
+};
+
+const localeLabels: Record<Locale, string> = {
+  fr: 'FR',
+  en: 'EN',
 };
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { languageTheme, setLanguageTheme, colorMode, toggleColorMode } = useTheme();
+  const { locale, setLocale, t } = useLanguage();
+
+  const navLinks = [
+    { id: 'accueil', label: t('nav.home') },
+    { id: 'apropos', label: t('nav.about') },
+    { id: 'parcours', label: t('nav.journey') },
+    { id: 'competences', label: t('nav.skills') },
+    { id: 'projets', label: t('nav.projects') },
+    { id: 'contact', label: t('nav.contact') },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -36,101 +75,124 @@ const Navbar = () => {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-card/80 backdrop-blur-lg border-b border-border shadow-sm' : 'bg-transparent'
+        scrolled ? 'border-b border-border bg-card/80 shadow-sm backdrop-blur-lg' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <button onClick={() => scrollTo('accueil')} className="text-xl font-bold text-foreground">
           Donald<span className="text-primary">.dev</span>
         </button>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className="px-4 py-2 text-sm text-muted-foreground hover:text-primary transition-colors rounded-lg"
+              className="rounded-lg px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
             >
               {link.label}
             </button>
           ))}
         </nav>
 
-        {/* Theme Controls */}
-        <div className="hidden md:flex items-center gap-2">
-          {/* Language themes */}
-          <div className="flex gap-1 p-1 bg-muted rounded-lg">
-            {(Object.keys(langLabels) as LanguageTheme[]).map((lang) => (
+        <div className="hidden items-center gap-2 md:flex">
+          <div className="flex gap-1 rounded-lg bg-muted p-1">
+            {(Object.keys(localeLabels) as Locale[]).map((currentLocale) => (
               <button
-                key={lang}
-                onClick={() => setLanguageTheme(lang)}
-                className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
-                  languageTheme === lang
+                key={currentLocale}
+                onClick={() => setLocale(currentLocale)}
+                className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all ${
+                  locale === currentLocale
                     ? 'bg-primary text-primary-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                {langLabels[lang]}
+                {localeLabels[currentLocale]}
               </button>
             ))}
           </div>
-          {/* Dark/Light */}
+
+          <div className="flex gap-1 rounded-lg bg-muted p-1">
+            {(Object.keys(stackLabels) as LanguageTheme[]).map((stack) => (
+              <button
+                key={stack}
+                onClick={() => setLanguageTheme(stack)}
+                className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all ${
+                  languageTheme === stack
+                    ? 'bg-primary text-primary-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {stackLabels[stack]}
+              </button>
+            ))}
+          </div>
+
           <button
             onClick={toggleColorMode}
-            className="p-2 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors"
+            className="rounded-lg bg-muted p-2 text-foreground transition-colors hover:bg-muted/80"
           >
-            {colorMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {colorMode === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
         </div>
 
-        {/* Mobile toggle */}
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2 text-foreground">
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-1 rounded-lg bg-card/80 p-1 backdrop-blur">
+            {(Object.keys(stackLabels) as LanguageTheme[]).map((stack) => (
+              <button
+                key={stack}
+                onClick={() => setLanguageTheme(stack)}
+                className={`rounded-md p-1.5 transition-all ${
+                  languageTheme === stack
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground'
+                }`}
+                title={stackLabels[stack]}
+                aria-label={stackLabels[stack]}
+              >
+                <span className={languageTheme === stack ? 'text-primary-foreground' : stackColors[stack]}>
+                  {stackIcons[stack]}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={toggleColorMode}
+            className="rounded-lg bg-card/80 p-2 text-foreground backdrop-blur"
+            aria-label={colorMode === 'dark' ? 'Light mode' : 'Dark mode'}
+          >
+            {colorMode === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-foreground">
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-card border-b border-border overflow-hidden"
+            className="overflow-hidden border-b border-border bg-card md:hidden"
           >
-            <div className="px-6 py-4 space-y-2">
+            <div className="space-y-2 px-6 py-4">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className="block w-full text-left px-4 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-primary hover:bg-muted transition-all"
+                  className="block w-full rounded-lg px-4 py-2.5 text-left text-sm text-muted-foreground transition-all hover:bg-muted hover:text-primary"
                 >
                   {link.label}
                 </button>
               ))}
-              <div className="flex gap-1 pt-2">
-                {(Object.keys(langLabels) as LanguageTheme[]).map((lang) => (
-                  <button
-                    key={lang}
-                    onClick={() => setLanguageTheme(lang)}
-                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
-                      languageTheme === lang
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground'
-                    }`}
-                  >
-                    {langLabels[lang]}
-                  </button>
-                ))}
-                <button onClick={toggleColorMode} className="p-1.5 rounded-md bg-muted text-foreground ml-auto">
-                  {colorMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                </button>
-              </div>
+
             </div>
           </motion.div>
         )}

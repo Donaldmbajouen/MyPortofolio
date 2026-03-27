@@ -26,11 +26,6 @@ const services = [
     icon: Code,
     title: "Intégration Frontend",
     description: "Intégration pixel-perfect avec HTML, CSS, JavaScript, Tailwind CSS et frameworks modernes."
-  },
-  {
-    icon: Cpu,
-    title: "IoT & Systèmes",
-    description: "Développement de solutions embarquées, applications IoT et projets AgriTech innovants."
   }
 ];
 

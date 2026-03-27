@@ -1,32 +1,46 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export const useScrollAnimation = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+export const useScrollAnimation = (containerRef: RefObject<HTMLElement>) => {
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    const container = containerRef.current;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          entry.target.classList.remove('opacity-0');
-        }
+    if (!container) {
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      const sections = gsap.utils.toArray<HTMLElement>('[data-scroll-section]');
+
+      sections.forEach((section, index) => {
+        gsap.fromTo(
+          section,
+          {
+            autoAlpha: 0,
+            y: index === 0 ? 36 : 72,
+          },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: index === 0 ? 0.9 : 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: index === 0 ? 'top 90%' : 'top 82%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
       });
-    }, observerOptions);
-
-    // Observe all elements with animation classes
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach((el) => {
-      el.classList.add('opacity-0');
-      observer.observe(el);
-    });
+    }, container);
 
     return () => {
-      animatedElements.forEach((el) => observer.unobserve(el));
+      ctx.revert();
     };
-  }, []);
+  }, [containerRef]);
 };
 
 export default useScrollAnimation;

@@ -1,26 +1,65 @@
+import type { FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-
-const contactInfo = [
-  { icon: Phone, label: "Téléphone", value: "+237 679315698", href: "tel:+237679315698" },
-  { icon: Mail, label: "Email", value: "mbajouend@gmail.com", href: "mailto:mbajouend@gmail.com" },
-  { icon: MapPin, label: "Localisation", value: "Yaoundé, Cameroun" },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
+import donaldImage from '@/assets/donald1.png';
 
 const ContactSection = () => {
+  const { locale, t } = useLanguage();
+
+  const contactInfo = [
+    { icon: Phone, label: t('contact.phone'), value: '+237 679315698', href: 'tel:+237679315698' },
+    { icon: Mail, label: t('contact.email'), value: 'mbajouend@gmail.com', href: 'mailto:mbajouend@gmail.com' },
+    { icon: MapPin, label: t('contact.location'), value: t('contact.locationValue') },
+  ];
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const message = String(formData.get('message') || '').trim();
+
+    const whatsappMessage = [
+      t('contact.whatsappGreeting'),
+      '',
+      `${locale === 'fr' ? 'Nom' : 'Name'}: ${name || t('contact.notProvided')}`,
+      `Email: ${email || t('contact.notProvided')}`,
+      '',
+      t('contact.whatsappMessage'),
+      message || t('contact.noMessage'),
+    ].join('\n');
+
+    window.open(
+      `https://wa.me/237679315698?text=${encodeURIComponent(whatsappMessage)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
   return (
-    <section id="contact" className="py-20 md:py-28 bg-card/50">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="contact" data-scroll-section className="relative overflow-hidden py-20 md:py-28 bg-card/50">
+      <div className="pointer-events-none absolute inset-0">
+        <img
+          src={donaldImage}
+          alt=""
+          aria-hidden="true"
+          className="absolute right-[3%] top-1/2 hidden max-w-none -translate-y-1/2 opacity-[0.16] saturate-0 md:block md:w-80 lg:w-[22rem] xl:right-[5%] xl:w-[26rem]"
+        />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-primary font-medium mb-2">Restons en contact</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Contact</h2>
+          <p className="text-primary font-medium mb-2">{t('contact.eyebrow')}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t('contact.title')}</h2>
           <div className="w-16 h-1 bg-primary rounded-full mb-12" />
         </motion.div>
 
@@ -32,9 +71,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-muted-foreground leading-relaxed">
-              N'hésitez pas à me contacter pour discuter de vos projets ou pour toute collaboration.
-            </p>
+            <p className="text-muted-foreground leading-relaxed">{t('contact.description')}</p>
 
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
@@ -75,14 +112,14 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
-            <Input placeholder="Votre nom" className="bg-background" />
-            <Input type="email" placeholder="Votre email" className="bg-background" />
-            <Textarea placeholder="Votre message..." rows={5} className="bg-background resize-none" />
+            <Input name="name" placeholder={t('contact.namePlaceholder')} className="bg-background" />
+            <Input name="email" type="email" placeholder={t('contact.emailPlaceholder')} className="bg-background" />
+            <Textarea name="message" placeholder={t('contact.messagePlaceholder')} rows={5} className="bg-background resize-none" />
             <Button type="submit" className="w-full" size="lg">
               <Send className="w-4 h-4 mr-2" />
-              Envoyer le message
+              {t('contact.submit')}
             </Button>
           </motion.form>
         </div>

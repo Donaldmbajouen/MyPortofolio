@@ -1,15 +1,19 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin } from 'lucide-react';
+import { ArrowDown, Download, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import donaldPhoto from '@/assets/donald.png';
+import cvPdf from '@/assets/NJEMI DONALD.pdf';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="accueil" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="accueil" data-scroll-section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -19,34 +23,38 @@ const HeroSection = () => {
       <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Text */}
         <motion.div
+          className="flex flex-col items-center text-center md:items-start md:text-left"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-primary font-medium mb-3">Bonjour, je suis</p>
+          <p className="text-primary font-medium mb-3">{t('hero.greeting')}</p>
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 leading-tight">
             Donald<br />
             <span className="text-primary">Njemi Mbajouen</span>
           </h1>
-          <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">
-            Développeur Full Stack
-          </h2>
+          <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">{t('hero.role')}</h2>
           <p className="text-muted-foreground leading-relaxed mb-8 max-w-lg">
-            Passionné par le développement web et mobile avec Laravel, Vue.js, Nuxt.js et Flutter. 
-            Je crée des applications modernes, performantes et élégantes.
+            {t('hero.description')}
           </p>
 
-          <div className="flex items-center gap-4">
-            <Button size="lg" onClick={() => scrollTo('contact')}>
-              Me contacter
+          <div className="flex w-full max-w-sm flex-col gap-4 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center md:justify-start">
+            <Button size="lg" className="w-full sm:w-auto" onClick={() => scrollTo('contact')}>
+              {t('hero.contact')}
             </Button>
-            <Button size="lg" variant="outline" onClick={() => scrollTo('projets')}>
-              Voir mes projets
+            <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => scrollTo('projets')}>
+              {t('hero.projects')}
+            </Button>
+            <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
+              <a href={cvPdf} download="Donald-Njemi-CV.pdf">
+                <Download className="w-4 h-4 mr-2" />
+                {t('hero.resume')}
+              </a>
             </Button>
           </div>
 
           {/* Social Links */}
-          <div className="flex gap-3 mt-8">
+          <div className="mt-8 flex justify-center gap-3 md:justify-start">
             <a href="https://github.com/Donaldmbajouen" target="_blank" rel="noopener noreferrer"
               className="p-3 rounded-xl bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
               <Github className="w-5 h-5" />
