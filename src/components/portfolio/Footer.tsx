@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="py-8 border-t border-border">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm text-muted-foreground flex items-center gap-1">
-          © {new Date().getFullYear()} Donald.dev — {t('footer.text')} <Heart className="w-3.5 h-3.5 text-primary fill-primary" />
+          © {new Date().getFullYear()} Donald.dev — {t('footer.text')} <Heart className="w-3.5 h-3.5 text-primary fill-primary" /> 🥲
         </p>
         <div className="flex gap-3">
           <a href="https://github.com/Donaldmbajouen" target="_blank" rel="noopener noreferrer"
