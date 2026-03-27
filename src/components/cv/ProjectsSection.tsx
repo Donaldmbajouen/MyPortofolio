@@ -1,85 +1,110 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { useState } from 'react';
 
 const projects = [
   {
     title: "EcoDelivery Platform",
-    description: "Plateforme web de livraison éco-responsable avec suivi carbone et tableau de bord admin.",
+    description: "Plateforme web de livraison éco-responsable avec suivi carbone et tableau de bord admin complet.",
     technologies: ["Vue.js", "Nuxt.js", "Laravel", "MySQL"],
-    category: "Web"
+    category: "web"
   },
   {
     title: "BoltRide App",
-    description: "Application mobile de réservation de courses avec géolocalisation temps réel.",
+    description: "Application mobile de réservation de courses avec géolocalisation temps réel et notifications push.",
     technologies: ["Flutter", "Dart", "Firebase", "Google Maps"],
-    category: "Mobile"
+    category: "mobile"
   },
   {
     title: "Smart Dashboard",
-    description: "Tableau de bord analytique SaaS avec visualisations de données en temps réel.",
+    description: "Tableau de bord analytique SaaS avec visualisations de données en temps réel et exports.",
     technologies: ["Vue.js", "Chart.js", "Laravel", "PostgreSQL"],
-    category: "Web"
+    category: "web"
   },
   {
     title: "GreenMarket API",
-    description: "API REST pour marketplace de produits locaux avec système de paiement Stripe.",
+    description: "API REST pour marketplace de produits locaux avec système de paiement intégré.",
     technologies: ["Laravel", "PostgreSQL", "Redis", "Stripe"],
-    category: "Backend"
+    category: "web"
   }
 ];
 
-const ProjectsSection = () => {
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
-    >
-      <h3 className="text-lg font-bold text-foreground mb-4 tracking-wide">
-        PROJETS RÉALISÉS
-      </h3>
+const categories = [
+  { id: 'all', label: 'Tout' },
+  { id: 'web', label: 'Web' },
+  { id: 'mobile', label: 'Mobile' },
+];
 
-      <div className="grid md:grid-cols-2 gap-4">
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            className="p-4 rounded-lg border border-border bg-muted/30 hover:border-primary/50 transition-colors group"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 + index * 0.1 }}
-            whileHover={{ y: -2 }}
+const ProjectsSection = () => {
+  const [filter, setFilter] = useState('all');
+  
+  const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+
+  return (
+    <div>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Portfolio</h1>
+        <div className="w-16 h-1 bg-primary rounded-full mb-6" />
+      </motion.div>
+
+      {/* Filter Tabs */}
+      <motion.div 
+        className="flex gap-2 mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => setFilter(cat.id)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              filter === cat.id
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted text-muted-foreground hover:text-foreground'
+            }`}
           >
-            <div className="flex items-start justify-between mb-2">
+            {cat.label}
+          </button>
+        ))}
+      </motion.div>
+
+      <div className="grid md:grid-cols-2 gap-5">
+        {filtered.map((project, index) => (
+          <motion.div
+            key={project.title}
+            className="p-5 rounded-xl border border-border bg-card hover:border-primary/40 transition-all group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + index * 0.1 }}
+          >
+            <div className="flex items-start justify-between mb-3">
               <div>
-                <h4 className="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">
+                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
-                </h4>
-                <Badge variant="outline" className="text-[10px] mt-1">
+                </h3>
+                <Badge variant="outline" className="text-[10px] mt-1 capitalize">
                   {project.category}
                 </Badge>
               </div>
               <div className="flex gap-1.5">
-                <a href="#" className="p-1.5 rounded-md bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <Github className="w-3.5 h-3.5" />
+                <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all">
+                  <Github className="w-4 h-4" />
                 </a>
-                <a href="#" className="p-1.5 rounded-md bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <ExternalLink className="w-3.5 h-3.5" />
+                <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all">
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
             </div>
             
-            <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
               {project.description}
             </p>
 
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-1.5">
               {project.technologies.map((tech, i) => (
-                <Badge 
-                  key={i} 
-                  variant="secondary" 
-                  className="text-[10px] px-1.5 py-0"
-                >
+                <Badge key={i} variant="secondary" className="text-xs">
                   {tech}
                 </Badge>
               ))}
@@ -87,25 +112,7 @@ const ProjectsSection = () => {
           </motion.div>
         ))}
       </div>
-
-      {/* View more link */}
-      <motion.div 
-        className="mt-4 text-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <a 
-          href="https://github.com/Donaldmbajouen" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
-        >
-          <Github className="w-4 h-4" />
-          Voir tous mes projets sur GitHub
-        </a>
-      </motion.div>
-    </motion.section>
+    </div>
   );
 };
 
