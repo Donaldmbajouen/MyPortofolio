@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Server, Palette, Cpu, Globe } from 'lucide-react';
-import heroImage from '@/assets/hero-image.jpg';
+import heroImage from '@/assets/moi.png';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutSection = () => {
