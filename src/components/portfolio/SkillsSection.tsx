@@ -2,9 +2,16 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, Smartphone, Server, Wrench, Palette, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import TechIcon, { type TechIconName } from '@/components/portfolio/TechIcon';
 
 const SkillsSection = () => {
   const { locale, t, messages } = useLanguage();
+
+  type SkillItem = {
+    name: string;
+    icons: TechIconName[];
+    detail?: string;
+  };
 
   const domains = [
     {
@@ -12,65 +19,65 @@ const SkillsSection = () => {
       label: messages.skills.categories.frontend,
       icon: Globe,
       skills: [
-        { name: 'Vue.js / Nuxt.js', icon: '🟢' },
-        { name: 'React / TypeScript', icon: '⚛️' },
-        { name: 'HTML / CSS / JS', icon: '🌐' },
-        { name: 'Tailwind CSS', icon: '🎨' },
-      ]
+        { name: 'Vue.js / Nuxt.js', icons: ['vue', 'nuxt'] },
+        { name: 'React / TypeScript', icons: ['react', 'typescript'] },
+        { name: 'HTML / CSS / JS', icons: ['html5', 'css3', 'javascript'] },
+        { name: 'Tailwind CSS', icons: ['tailwind'] },
+      ] satisfies SkillItem[],
     },
     {
       id: 'backend',
       label: messages.skills.categories.backend,
       icon: Server,
       skills: [
-        { name: 'Laravel / PHP', icon: '🔴' },
-        { name: 'MySQL / PostgreSQL', icon: '🗃️' },
-        { name: 'API RESTful', icon: '🔗' },
-        { name: 'Python', icon: '🐍' },
-      ]
+        { name: 'Laravel / PHP', icons: ['laravel', 'php'] },
+        { name: 'MySQL / PostgreSQL', icons: ['mysql', 'postgresql'] },
+        { name: 'API RESTful', icons: ['api'] },
+        { name: 'Python', icons: ['python'] },
+      ] satisfies SkillItem[],
     },
     {
       id: 'mobile',
       label: messages.skills.categories.mobile,
       icon: Smartphone,
       skills: [
-        { name: 'Flutter / Dart', icon: '💙' },
-        { name: 'Firebase', icon: '🔥' },
-        { name: 'Android / iOS', icon: '📱' },
-      ]
+        { name: 'Flutter / Dart', icons: ['flutter'] },
+        { name: 'Firebase', icons: ['firebase'] },
+        { name: 'Android / iOS', icons: ['android', 'ios'] },
+      ] satisfies SkillItem[],
     },
     {
       id: 'tools',
       label: messages.skills.categories.tools,
       icon: Wrench,
       skills: [
-        { name: 'Git / GitHub / GitLab', icon: '🔀' },
-        { name: 'Docker', icon: '🐳' },
-        { name: 'VS Code', icon: '💻' },
-        { name: 'Postman', icon: '📬' },
-        { name: 'Trello', icon: '📋' },
-      ]
+        { name: 'Git / GitHub / GitLab', icons: ['git', 'github', 'gitlab'] },
+        { name: 'Docker', icons: ['docker'] },
+        { name: 'VS Code', icons: ['vscode'] },
+        { name: 'Postman', icons: ['postman'] },
+        { name: 'Trello', icons: ['trello'] },
+      ] satisfies SkillItem[],
     },
     {
       id: 'ia',
       label: messages.skills.categories.ai,
       icon: Sparkles,
       skills: [
-        { name: 'Cursor', icon: '🤖', detail: messages.skills.details.cursor },
-        { name: locale === 'fr' ? 'Assistants IA de code' : 'AI Coding Assistants', icon: '⚡', detail: messages.skills.details.aiCoding },
-        { name: 'Prompt Engineering', icon: '🧠', detail: messages.skills.details.promptEngineering },
-        { name: locale === 'fr' ? 'Prompts techniques structurés' : 'Structured Technical Prompts', icon: '📝', detail: messages.skills.details.structuredPrompts },
-      ]
+        { name: 'Cursor', icons: ['cursor'], detail: messages.skills.details.cursor },
+        { name: locale === 'fr' ? 'Assistants IA de code' : 'AI Coding Assistants', icons: ['ai'], detail: messages.skills.details.aiCoding },
+        { name: 'Prompt Engineering', icons: ['prompt'], detail: messages.skills.details.promptEngineering },
+        { name: locale === 'fr' ? 'Prompts techniques structurés' : 'Structured Technical Prompts', icons: ['prompt-structured'], detail: messages.skills.details.structuredPrompts },
+      ] satisfies SkillItem[],
     },
     {
       id: 'design',
       label: messages.skills.categories.design,
       icon: Palette,
       skills: [
-        { name: 'Figma', icon: '🎯' },
-        { name: 'Photoshop', icon: '🖼️' },
-        { name: 'UX / UI Design', icon: '✨' },
-      ]
+        { name: 'Figma', icons: ['figma'] },
+        { name: 'Photoshop', icons: ['photoshop'] },
+        { name: 'UX / UI Design', icons: ['uxui'] },
+      ] satisfies SkillItem[],
     },
   ];
 
@@ -137,7 +144,11 @@ const SkillsSection = () => {
                     transition={{ delay: index * 0.06 }}
                     className="flex items-start gap-4 p-5 rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-md hover:shadow-primary/5 transition-all group"
                   >
-                    <span className="text-2xl leading-none">{skill.icon}</span>
+                    <div className="flex max-w-[7rem] flex-wrap gap-2 pt-0.5">
+                      {skill.icons.map((iconName) => (
+                        <TechIcon key={`${skill.name}-${iconName}`} name={iconName} size="sm" />
+                      ))}
+                    </div>
                     <div>
                       <span className="font-medium text-foreground group-hover:text-primary transition-colors">
                         {skill.name}

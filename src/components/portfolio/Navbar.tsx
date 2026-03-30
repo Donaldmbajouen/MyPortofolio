@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, Moon, Sun, X } from 'lucide-react';
 import { Locale, useLanguage } from '@/contexts/LanguageContext';
@@ -49,6 +49,7 @@ const localeLabels: Record<Locale, string> = {
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const { languageTheme, setLanguageTheme, colorMode, toggleColorMode } = useTheme();
   const { locale, setLocale, t } = useLanguage();
 
@@ -67,13 +68,47 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const section = document.getElementById(id);
+
+    if (!section) {
+      setMobileOpen(false);
+      return;
+    }
+
+    const headerHeight = headerRef.current?.offsetHeight ?? 88;
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    const targetTop = Math.max(sectionTop - headerHeight - 12, 0);
+
     setMobileOpen(false);
+
+    window.setTimeout(() => {
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    }, 120);
   };
 
   return (
     <motion.header
+      ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'border-b border-border bg-card/80 shadow-sm backdrop-blur-lg' : 'bg-transparent'
       }`}
@@ -168,7 +203,13 @@ const Navbar = () => {
             {colorMode === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
 
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-foreground">
+          <button
+            onClick={() => setMobileOpen((open) => !open)}
+            className="p-2 text-foreground"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+          >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
@@ -176,25 +217,37 @@ const Navbar = () => {
 
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-b border-border bg-card md:hidden"
-          >
-            <div className="space-y-2 px-6 py-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollTo(link.id)}
-                  className="block w-full rounded-lg px-4 py-2.5 text-left text-sm text-muted-foreground transition-all hover:bg-muted hover:text-primary"
-                >
-                  {link.label}
-                </button>
-              ))}
+          <>
+            <motion.button
+              type="button"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 top-[72px] z-40 bg-background/45 backdrop-blur-sm md:hidden"
+              aria-label="Close mobile navigation"
+            />
 
-            </div>
-          </motion.div>
+            <motion.div
+              id="mobile-navigation"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="relative z-50 overflow-hidden border-b border-border bg-card md:hidden"
+            >
+              <div className="space-y-2 px-6 py-4">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollTo(link.id)}
+                    className="block w-full rounded-lg px-4 py-2.5 text-left text-sm text-muted-foreground transition-all hover:bg-muted hover:text-primary"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>
