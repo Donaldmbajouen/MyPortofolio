@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Download, Github, Linkedin } from 'lucide-react';
+import TiltCard from './TiltCard';
 import { Button } from '@/components/ui/button';
 import donaldPhoto from '@/assets/donald.png';
 import cvPdf from '@/assets/NJEMI DONALD.pdf';
@@ -73,15 +74,14 @@ const HeroSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="relative w-80 h-[28rem] md:w-96 md:h-[32rem]">
+          <TiltCard noStyle className="relative w-full max-w-[320px] h-[30rem] md:max-w-[450px] md:h-[42rem]">
             <img 
               src={donaldPhoto} 
               alt="Donald Njemi" 
-              className="w-full h-full object-cover object-top rounded-3xl"
+              className="w-full h-full object-contain object-bottom"
+              style={{ transform: "translateZ(30px)" }}
             />
-            {/* Subtle gradient overlay at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background/60 to-transparent rounded-b-3xl" />
-          </div>
+          </TiltCard>
         </motion.div>
       </div>
 

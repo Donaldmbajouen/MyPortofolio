@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
+import TiltCard from './TiltCard';
 import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -230,8 +231,8 @@ const ProjectsSection = () => {
                 onClick={() => setCategoryFilter(cat.id)}
                 className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   categoryFilter === cat.id
-                    ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20'
-                    : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30'
+                    ? 'bg-primary text-primary-foreground shadow-primary-glow scale-[1.02]'
+                    : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 shadow-premium'
                 }`}
               >
                 {cat.label}
@@ -283,45 +284,52 @@ const ProjectsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                className="p-6 rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all group"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      {categoryLabels[project.category] ?? project.category}
-                    </Badge>
-                    {project.repositoryVisibility === 'private' && (
-                      <Badge variant="secondary" className="text-xs">
-                        {locale === 'fr' ? 'Code privé' : 'Private code'}
+                <TiltCard className="h-full p-6 transition-all group">
+                  <div className="flex items-start justify-between mb-4" style={{ transform: "translateZ(50px)" }}>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline" className="text-xs">
+                        {categoryLabels[project.category] ?? project.category}
                       </Badge>
-                    )}
+                      {project.repositoryVisibility === 'private' && (
+                        <Badge variant="secondary" className="text-xs">
+                          {locale === 'fr' ? 'Code privé' : 'Private code'}
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
+                          <Github className="w-4 h-4" />
+                        </a>
+                      )}
+                      {project.live && (
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
-                        <Github className="w-4 h-4" />
-                      </a>
-                    )}
-                    {project.live && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    )}
+
+                  <h3 
+                    className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors"
+                    style={{ transform: "translateZ(40px)" }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p 
+                    className="text-sm text-muted-foreground mb-4 leading-relaxed"
+                    style={{ transform: "translateZ(30px)" }}
+                  >
+                    {project.description[locale]}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5" style={{ transform: "translateZ(20px)" }}>
+                    {project.technologies.map((tech, i) => (
+                      <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
+                    ))}
                   </div>
-                </div>
-
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                  {project.description[locale]}
-                </p>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.map((tech, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
-                  ))}
-                </div>
+                </TiltCard>
               </motion.div>
             ))}
           </div>
