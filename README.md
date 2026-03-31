@@ -1,73 +1,197 @@
-# Welcome to your Lovable project
+# Donald Njemi Portfolio
 
-## Project info
+Portfolio personnel moderne développé avec React, TypeScript et Tailwind CSS pour présenter le profil, les compétences, le parcours et les réalisations de Donald Njemi Mbajouen.
 
-**URL**: https://lovable.dev/projects/d13ae979-2c74-433a-9e7a-73d6cf7dbb10
+L'application met en avant une expérience fluide, animée et responsive, avec prise en charge du multilingue, des thèmes dynamiques selon la stack mise en avant, ainsi qu'une section projets filtrable par catégorie et par technologie.
 
-## How can I edit this code?
+## Aperçu
 
-There are several ways of editing your application.
+Ce portfolio a été conçu pour :
 
-**Use Lovable**
+- présenter rapidement le profil professionnel et les expertises clés
+- afficher les expériences, parcours académique et diplômes
+- mettre en avant les projets réalisés avec filtres par catégorie et technologies
+- proposer un contact direct via WhatsApp
+- offrir une interface responsive avec mode clair/sombre
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d13ae979-2c74-433a-9e7a-73d6cf7dbb10) and start prompting.
+## Fonctionnalités
 
-Changes made via Lovable will be committed automatically to this repo.
+- Interface responsive pensée pour mobile, tablette et desktop
+- Sections dédiées : accueil, à propos, parcours, compétences, projets et contact
+- Support bilingue `fr` / `en`
+- Système de thèmes visuels basé sur les stacks `Laravel`, `Vue` et `Flutter`
+- Bascule mode clair / sombre avec persistance en local
+- Animations fluides avec `framer-motion`
+- Téléchargement du CV depuis la section hero
+- Liens rapides vers GitHub et LinkedIn
+- Formulaire de contact connecté à WhatsApp
+- Filtrage des projets par catégorie
+- Filtrage des projets par technologie
+- Gestion des projets privés avec badge visuel dédié
+- Intégration de `Vercel Analytics`
 
-**Use your preferred IDE**
+## Stack technique
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Frontend
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui
 
-Follow these steps:
+### UI et expérience
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Framer Motion
+- Lucide React
+- Radix UI
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Outils complémentaires
 
-# Step 3: Install the necessary dependencies.
-npm i
+- TanStack Query
+- React Router DOM
+- Sonner
+- Vercel Analytics
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## Installation
+
+### Prérequis
+
+- Node.js 18+
+- npm
+
+### Lancer le projet en local
+
+```bash
+git clone <url-du-repo>
+cd portofolio
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+L'application sera disponible sur `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Scripts disponibles
 
-**Use GitHub Codespaces**
+```bash
+npm run dev
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Lance le serveur de développement Vite.
 
-## What technologies are used for this project?
+```bash
+npm run build
+```
 
-This project is built with:
+Génère la version de production.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```bash
+npm run preview
+```
 
-## How can I deploy this project?
+Lance un aperçu local du build de production.
 
-Simply open [Lovable](https://lovable.dev/projects/d13ae979-2c74-433a-9e7a-73d6cf7dbb10) and click on Share -> Publish.
+```bash
+npm run lint
+```
 
-## Can I connect a custom domain to my Lovable project?
+Exécute les vérifications ESLint.
 
-Yes, you can!
+## Structure du projet
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```text
+portofolio/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── portfolio/
+│   │   └── ui/
+│   ├── contexts/
+│   ├── hooks/
+│   ├── lib/
+│   ├── pages/
+│   ├── App.tsx
+│   └── main.tsx
+├── package.json
+└── README.md
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Points de personnalisation
+
+Les principaux endroits à modifier pour adapter le portfolio :
+
+- `src/contexts/LanguageContext.tsx`
+  Contient les textes FR/EN du site.
+
+- `src/components/portfolio/ProjectsSection.tsx`
+  Contient la liste des projets, les catégories et les filtres.
+
+- `src/components/portfolio/HeroSection.tsx`
+  Gère l’introduction, les CTA, les liens sociaux et le CV.
+
+- `src/components/portfolio/ContactSection.tsx`
+  Gère les coordonnées et le formulaire WhatsApp.
+
+- `src/contexts/ThemeContext.tsx`
+  Gère les thèmes de stack et le mode clair/sombre.
+
+- `src/assets/`
+  Contient les images, portraits et le CV PDF.
+
+## Gestion des projets
+
+Les projets sont actuellement affichés dans une grille avec :
+
+- titre
+- description FR/EN
+- catégories
+- technologies
+- lien live si disponible
+- lien GitHub si public
+- badge `Code privé` pour les dépôts non publics
+
+Le filtrage combiné permet :
+
+- de sélectionner une catégorie
+- de sélectionner une technologie
+- de réinitialiser les filtres
+- d’afficher un message si aucun projet ne correspond
+
+## Déploiement
+
+Le projet peut être déployé sur n’importe quelle plateforme compatible Vite, par exemple :
+
+- Vercel
+- Netlify
+- Firebase Hosting
+
+Processus standard :
+
+```bash
+npm install
+npm run build
+```
+
+Puis publier le contenu généré dans le dossier `dist/`.
+
+## Qualité et maintenance
+
+Avant mise en production, il est recommandé de lancer :
+
+```bash
+npm run lint
+npm run build
+```
+
+## Auteur
+
+Donald Njemi Mbajouen
+
+- GitHub : https://github.com/Donaldmbajouen
+- LinkedIn : https://linkedin.com/in/donald-njemi
+- Email : mbajouend@gmail.com
+
+## Licence
+
+Ce projet est utilisé comme portfolio personnel. Adapte la licence selon l’usage que tu souhaites en faire.
