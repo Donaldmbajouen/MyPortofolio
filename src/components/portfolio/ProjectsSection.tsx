@@ -3,6 +3,7 @@ import { ExternalLink, Github } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const projects = [
@@ -98,6 +99,36 @@ const projects = [
     github: "https://github.com/Donaldmbajouen/EduAI_back"
   },
   {
+    title: "Yuisy",
+    description: {
+      fr: "Backend d’une plateforme moderne de billetterie pour créer des événements, gérer plusieurs types de billets, suivre les ventes et contrôler l’accès via QR codes.",
+      en: "Backend for a modern ticketing platform to create events, manage multiple ticket types, track sales, and control access with QR codes.",
+    },
+    technologies: ["Laravel", "PHP 8.2", "MySQL", "QR Code"],
+    category: "backend",
+    repositoryVisibility: "private",
+  },
+  {
+    title: "Yuisy Ticket",
+    description: {
+      fr: "Frontend de plateforme de billetterie en ligne permettant la découverte d’événements, la réservation de billets, le paiement multi-devises et la gestion organisateur en temps réel.",
+      en: "Frontend for an online ticketing platform enabling event discovery, ticket booking, multi-currency payments, and real-time organizer management.",
+    },
+    technologies: ["Vue 3", "Vue I18n", "Axios", "Day.js"],
+    category: "platform",
+    repositoryVisibility: "private",
+  },
+  {
+    title: "AfriBusiness",
+    description: {
+      fr: "Application Flutter de gestion des ventes, du stock et des paiements, conçue pour fonctionner 100% hors ligne avec tableau de bord, statistiques et génération de factures PDF.",
+      en: "A Flutter app for sales, inventory, and payment management, built to work 100% offline with a dashboard, analytics, and PDF invoice generation.",
+    },
+    technologies: ["Flutter", "Riverpod", "SQLite", "PDF"],
+    category: "mobile",
+    repositoryVisibility: "private",
+  },
+  {
     title: "Dolicash",
     description: {
       fr: "Application mobile orientée gestion financière personnelle avec suivi des transactions et organisation budgétaire.",
@@ -131,9 +162,16 @@ const projects = [
 
 const ProjectsSection = () => {
   const { locale, t, messages } = useLanguage();
-  const [filter, setFilter] = useState('all');
+  const [categoryFilter, setCategoryFilter] = useState('all');
+  const [technologyFilter, setTechnologyFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
-  const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+  const technologies = [...new Set(projects.flatMap((project) => project.technologies))].sort((a, b) => a.localeCompare(b));
+  const filtered = projects.filter((project) => {
+    const matchesCategory = categoryFilter === 'all' || project.category === categoryFilter;
+    const matchesTechnology = technologyFilter === 'all' || project.technologies.includes(technologyFilter);
+
+    return matchesCategory && matchesTechnology;
+  });
   const visibleProjects = showAll ? filtered : filtered.slice(0, 6);
 
   const categories = [
@@ -153,9 +191,16 @@ const ProjectsSection = () => {
     backend: messages.projects.filters.backend,
   };
 
+  const technologyFilterLabel = locale === 'fr' ? 'Technologie' : 'Technology';
+  const technologyFilterPlaceholder = locale === 'fr' ? 'Toutes les technologies' : 'All technologies';
+  const resetFiltersLabel = locale === 'fr' ? 'Réinitialiser' : 'Reset';
+  const noProjectsLabel = locale === 'fr'
+    ? 'Aucun projet ne correspond aux filtres sélectionnés.'
+    : 'No projects match the selected filters.';
+
   useEffect(() => {
     setShowAll(false);
-  }, [filter]);
+  }, [categoryFilter, technologyFilter]);
 
   return (
     <section id="projets" data-scroll-section className="py-20 md:py-28">
@@ -170,74 +215,121 @@ const ProjectsSection = () => {
           <div className="w-16 h-1 bg-primary rounded-full mb-8" />
         </motion.div>
 
-        {/* Filter */}
+        {/* Filters */}
         <motion.div
-          className="mb-10 flex flex-wrap gap-2"
+          className="mb-10 space-y-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setFilter(cat.id)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                filter === cat.id
-                  ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20'
-                  : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setCategoryFilter(cat.id)}
+                className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                  categoryFilter === cat.id
+                    ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20'
+                    : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="w-full md:max-w-xs">
+              <p className="mb-2 text-sm font-medium text-foreground">{technologyFilterLabel}</p>
+              <Select value={technologyFilter} onValueChange={setTechnologyFilter}>
+                <SelectTrigger className="h-11 rounded-xl border-border bg-card">
+                  <SelectValue placeholder={technologyFilterPlaceholder} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{technologyFilterPlaceholder}</SelectItem>
+                  {technologies.map((technology) => (
+                    <SelectItem key={technology} value={technology}>
+                      {technology}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {(categoryFilter !== 'all' || technologyFilter !== 'all') && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setCategoryFilter('all');
+                  setTechnologyFilter('all');
+                }}
+                className="w-full rounded-xl md:w-auto"
+              >
+                {resetFiltersLabel}
+              </Button>
+            )}
+          </div>
         </motion.div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visibleProjects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * index }}
-              className="p-6 rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all group"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <Badge variant="outline" className="text-xs">
-                  {categoryLabels[project.category] ?? project.category}
-                </Badge>
-                <div className="flex gap-2">
-                  {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
-                      <Github className="w-4 h-4" />
-                    </a>
-                  )}
-                  {project.live && (
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
+        {visibleProjects.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {visibleProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 * index }}
+                className="p-6 rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all group"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="text-xs">
+                      {categoryLabels[project.category] ?? project.category}
+                    </Badge>
+                    {project.repositoryVisibility === 'private' && (
+                      <Badge variant="secondary" className="text-xs">
+                        {locale === 'fr' ? 'Code privé' : 'Private code'}
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="flex gap-2">
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
+                        <Github className="w-4 h-4" />
+                      </a>
+                    )}
+                    {project.live && (
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                {project.description[locale]}
-              </p>
+                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  {project.description[locale]}
+                </p>
 
-              <div className="flex flex-wrap gap-1.5">
-                {project.technologies.map((tech, i) => (
-                  <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.technologies.map((tech, i) => (
+                    <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-border bg-card/50 px-6 py-12 text-center text-muted-foreground">
+            {noProjectsLabel}
+          </div>
+        )}
 
         {filtered.length > 6 && (
           <motion.div
