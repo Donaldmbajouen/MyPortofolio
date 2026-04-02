@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Server, Palette, Cpu, Globe } from 'lucide-react';
-import heroImage from '@/assets/moi.png';
+import TechCube from './TechCube';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutSection = () => {
@@ -32,8 +32,14 @@ const AboutSection = () => {
           <div className="flex flex-col md:flex-row gap-10 items-center">
             {/* Text - Left */}
             <div className="flex-1 space-y-4">
-              <p className="text-muted-foreground leading-relaxed">{t('about.paragraph1')}</p>
-              <p className="text-muted-foreground leading-relaxed">{t('about.paragraph2')}</p>
+              <p 
+                className="text-muted-foreground leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: t('about.paragraph1').replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>') }}
+              />
+              <p 
+                className="text-muted-foreground leading-relaxed whitespace-pre-line"
+                dangerouslySetInnerHTML={{ __html: t('about.paragraph2').replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>') }}
+              />
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4 pt-4">
@@ -42,7 +48,7 @@ const AboutSection = () => {
                   { value: '10+', label: t('about.stats.projects') },
                   { value: '5+', label: t('about.stats.technologies') },
                 ].map((stat) => (
-                  <div key={stat.label} className="text-center p-4 rounded-xl bg-card border border-border">
+                  <div key={stat.label} className="text-center p-4 rounded-xl bg-card border border-border shadow-premium transition-all hover:border-primary/30 hover:scale-[1.05] duration-300">
                     <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
                     <div className="text-xs text-muted-foreground">{stat.label}</div>
                   </div>
@@ -50,19 +56,15 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Photo - Right */}
+            {/* TechCube - Right */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-72 h-80 md:w-80 md:h-96 flex-shrink-0"
+              className="flex items-center justify-center flex-shrink-0"
             >
-              <img 
-                src={heroImage} 
-                alt="Donald Njemi" 
-                className="w-full h-full object-cover object-top rounded-3xl"
-              />
+              <TechCube />
             </motion.div>
           </div>
         </motion.div>
@@ -83,7 +85,7 @@ const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                className="p-6 rounded-xl border border-border bg-card hover:border-primary/40 transition-all group"
+                className="p-6 rounded-xl border border-border bg-card shadow-premium hover:border-primary/40 hover:shadow-floating transition-all duration-300 group"
               >
                 <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
                   <service.icon className="w-6 h-6" />

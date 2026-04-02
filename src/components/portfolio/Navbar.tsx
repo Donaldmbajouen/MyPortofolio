@@ -49,6 +49,7 @@ const localeLabels: Record<Locale, string> = {
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('accueil');
   const headerRef = useRef<HTMLElement>(null);
   const { languageTheme, setLanguageTheme, colorMode, toggleColorMode } = useTheme();
   const { locale, setLocale, t } = useLanguage();
@@ -78,6 +79,31 @@ const Navbar = () => {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
+  useEffect(() => {
+    const sections = navLinks.map(link => link.id);
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [navLinks]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -126,9 +152,20 @@ const Navbar = () => {
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className="rounded-lg px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+              className={`rounded-lg px-4 py-2 text-sm transition-all duration-300 relative ${
+                activeSection === link.id
+                  ? 'text-primary font-semibold'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
               {link.label}
+              {activeSection === link.id && (
+                <motion.div
+                  layoutId="active-nav-bg"
+                  className="absolute inset-0 bg-primary/5 rounded-lg -z-10"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </button>
           ))}
         </nav>
@@ -240,7 +277,11 @@ const Navbar = () => {
                   <button
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
-                    className="block w-full rounded-lg px-4 py-2.5 text-left text-sm text-muted-foreground transition-all hover:bg-muted hover:text-primary"
+                    className={`block w-full rounded-lg px-4 py-2.5 text-left text-sm transition-all border-l-2 ${
+                      activeSection === link.id
+                        ? 'bg-primary/5 border-primary text-primary font-semibold'
+                        : 'text-muted-foreground border-transparent hover:bg-muted hover:text-foreground'
+                    }`}
                   >
                     {link.label}
                   </button>

@@ -33,9 +33,9 @@ const messages = {
       eyebrow: 'Qui suis-je',
       title: 'À Propos De Moi',
       paragraph1:
-        "Jeune professionnel passionné par le développement web et mobile, doté d'une expérience concrète dans la création d'applications complètes avec Laravel, Vue.js, Nuxt.js et Flutter.",
+        "Développeur passionné basé au Cameroun, je conçois des solutions web et mobiles modernes avec une forte orientation vers l’impact réel. Spécialisé en **Laravel, Vue.js et Flutter**, je développe des applications complètes, de l’idée jusqu’à la mise en production, en mettant l’accent sur la performance, l’expérience utilisateur et la scalabilité.",
       paragraph2:
-        "Proactif, adaptable, et engagé dans une démarche d'apprentissage continu. Ma détermination et ma soif d'apprendre font de moi un développeur prometteur dans le domaine du numérique.",
+        "Au-delà du code, je m’intéresse à la création de produits utiles et rentables, notamment en Afrique (SaaS, IA, solutions locales). Passionné par l’innovation comme la traduction vocale en temps réel, je combine technique et réflexion produit pour transformer des concepts en applications concrètes qui résolvent de vrais problèmes.",
       stats: {
         years: "Années d'exp.",
         projects: 'Projets',
@@ -229,9 +229,9 @@ const messages = {
       eyebrow: 'Who I am',
       title: 'About Me',
       paragraph1:
-        'A young professional passionate about web and mobile development, with hands-on experience building complete applications with Laravel, Vue.js, Nuxt.js, and Flutter.',
+        "A passionate developer based in Cameroon, I design modern web and mobile solutions with a strong focus on real-world impact. Specialized in **Laravel, Vue.js, and Flutter**, I develop complete applications from idea to production, emphasizing performance, user experience, and scalability.",
       paragraph2:
-        'Proactive, adaptable, and committed to continuous learning. My determination and curiosity make me a promising developer in the digital field.',
+        "Beyond code, I focus on creating useful and profitable products, especially in Africa (SaaS, AI, local solutions). Driven by innovation like real-time voice translation, I combine technical skills with product thinking to turn concepts into concrete applications that solve real problems.",
       stats: {
         years: 'Years exp.',
         projects: 'Projects',
@@ -397,7 +397,129 @@ const messages = {
   },
 } as const;
 
-type TranslationTree = typeof messages.fr;
+interface TranslationTree {
+  nav: {
+    home: string;
+    about: string;
+    journey: string;
+    skills: string;
+    projects: string;
+    contact: string;
+  };
+  common: {
+    seeMore: string;
+    seeLess: string;
+    all: string;
+    light: string;
+    dark: string;
+    madeWith: string;
+  };
+  hero: {
+    greeting: string;
+    role: string;
+    description: string;
+    contact: string;
+    projects: string;
+    resume: string;
+  };
+  about: {
+    eyebrow: string;
+    title: string;
+    paragraph1: string;
+    paragraph2: string;
+    stats: {
+      years: string;
+      projects: string;
+      technologies: string;
+    };
+    servicesTitle: string;
+    services: {
+      web: { title: string; description: string };
+      mobile: { title: string; description: string };
+      backend: { title: string; description: string };
+      design: { title: string; description: string };
+      frontend: { title: string; description: string };
+      iot: { title: string; description: string };
+    };
+  };
+  journey: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    tabs: {
+      experiences: string;
+      academic: string;
+      diplomas: string;
+    };
+    experiences: ReadonlyArray<{
+      readonly title: string;
+      readonly company: string;
+      readonly period: string;
+      readonly summary: string;
+      readonly tasks: ReadonlyArray<string>;
+    }>;
+    academic: ReadonlyArray<{
+      readonly title: string;
+      readonly school: string;
+      readonly period: string;
+      readonly description: string;
+    }>;
+    diplomas: ReadonlyArray<{
+      readonly title: string;
+      readonly school: string;
+      readonly period: string;
+    }>;
+  };
+  skills: {
+    eyebrow: string;
+    title: string;
+    categories: {
+      frontend: string;
+      backend: string;
+      mobile: string;
+      tools: string;
+      ai: string;
+      design: string;
+    };
+    details: {
+      cursor: string;
+      aiCoding: string;
+      promptEngineering: string;
+      structuredPrompts: string;
+    };
+  };
+  projects: {
+    eyebrow: string;
+    title: string;
+    filters: {
+      showcase: string;
+      platform: string;
+      ecommerce: string;
+      mobile: string;
+      backend: string;
+    };
+  };
+  contact: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    phone: string;
+    email: string;
+    location: string;
+    locationValue: string;
+    namePlaceholder: string;
+    emailPlaceholder: string;
+    messagePlaceholder: string;
+    submit: string;
+    whatsappGreeting: string;
+    whatsappMessage: string;
+    notProvided: string;
+    noMessage: string;
+  };
+  footer: {
+    text: string;
+  };
+}
 type TranslationKey =
   | 'nav.home'
   | 'nav.about'

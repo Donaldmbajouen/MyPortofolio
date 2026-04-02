@@ -24,6 +24,7 @@ export type TechIconName =
   | 'postgresql'
   | 'prompt'
   | 'prompt-structured'
+  | 'postman'
   | 'python'
   | 'react'
   | 'tailwind'
@@ -150,15 +151,9 @@ const TailwindLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
 );
 
 const LaravelLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
-  <IconFrame size={size} className="bg-rose-50">
-    <svg viewBox="0 0 32 32" className={glyphBySize[size]}>
-      <path
-        fill="none"
-        stroke="#FF2D20"
-        strokeWidth="2.2"
-        strokeLinejoin="round"
-        d="m16 4 8 4.5v9L16 22l-8-4.5v-9L16 4Zm0 0v9m8-4.5-8 4.5M8 8.5l8 4.5m0 9v6m-5-3 5 3 5-3"
-      />
+  <IconFrame size={size} className="bg-rose-50 text-[#FF2D20]">
+    <svg viewBox="0 0 24 24" className={glyphBySize[size]} fill="currentColor">
+      <path d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934c0 .135-.073.26-.189.327l-9.03 5.206a.32.32 0 01-.066.027c-.008.003-.016.007-.025.01-.04.012-.08.012-.12 0-.009-.003-.018-.007-.027-.01a.316.316 0 01-.065-.027L.533 18.755a.375.375 0 01-.19-.326V5.53c0-.035.005-.07.014-.1.003-.012.01-.023.014-.035a.35.35 0 01.028-.053c.007-.012.018-.022.026-.033a.376.376 0 01.036-.035c.01-.008.022-.014.033-.022.013-.008.023-.018.036-.024L4.88 2.706a.375.375 0 01.38 0l4.35 2.506c.013.006.023.016.036.024.011.008.023.014.033.022a.376.376 0 01.036.035c.008.011.019.021.026.033.012.017.02.035.028.053.004.012.011.023.014.035a.364.364 0 01.014.1v9.652l3.761-2.166V7.654c0-.035.005-.07.014-.1.003-.012.01-.023.014-.035a.35.35 0 01.028-.053c.007-.012.018-.022.026-.033a.376.376 0 01.036-.035c.01-.008.022-.014.033-.022.013-.008.023-.018.036-.024l4.35-2.506a.375.375 0 01.38 0l4.35 2.506c.013.006.023.016.036.024.011.008.023.014.033.022z"/>
     </svg>
   </IconFrame>
 );
@@ -173,11 +168,9 @@ const PythonLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
 );
 
 const FlutterLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
-  <IconFrame size={size} className="bg-sky-50">
-    <svg viewBox="0 0 32 32" className={glyphBySize[size]}>
-      <path fill="#54C5F8" d="M18.5 3 8 13.5l4 4L26.5 3Z" />
-      <path fill="#29B6F6" d="M12 17.5 18.5 24H26l-10-10z" />
-      <path fill="#01579B" d="m16 21.5 4.7 4.7H26L20.6 21Z" />
+  <IconFrame size={size} className="bg-sky-50 text-[#02569B]">
+    <svg viewBox="0 0 24 24" className={glyphBySize[size]} fill="currentColor">
+      <path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357L14.314 0zm.014 11.072l-6.471 6.457 6.47 6.471H21.7l-6.46-6.468 6.46-6.46h-7.372z"/>
     </svg>
   </IconFrame>
 );

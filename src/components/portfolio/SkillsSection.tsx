@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, Smartphone, Server, Wrench, Palette, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import TechIcon, { type TechIconName } from '@/components/portfolio/TechIcon';
+import FlipCard from './FlipCard';
 
 const SkillsSection = () => {
   const { locale, t, messages } = useLanguage();
@@ -114,8 +115,8 @@ const SkillsSection = () => {
                   onClick={() => setActiveTab(domain.id)}
                   className={`flex items-center gap-3 px-5 py-4 rounded-xl text-left text-sm font-medium transition-all whitespace-nowrap ${
                     isActive
-                      ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
-                      : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30'
+                      ? 'bg-primary text-primary-foreground shadow-primary-glow scale-[1.02]'
+                      : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 shadow-premium'
                   }`}
                 >
                   <Icon className="w-5 h-5 flex-shrink-0" />
@@ -142,23 +143,33 @@ const SkillsSection = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.06 }}
-                    className="flex items-start gap-4 p-5 rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-md hover:shadow-primary/5 transition-all group"
                   >
-                    <div className="flex max-w-[7rem] flex-wrap gap-2 pt-0.5">
-                      {skill.icons.map((iconName) => (
-                        <TechIcon key={`${skill.name}-${iconName}`} name={iconName} size="sm" />
-                      ))}
-                    </div>
-                    <div>
-                      <span className="font-medium text-foreground group-hover:text-primary transition-colors">
-                        {skill.name}
-                      </span>
-                      {'detail' in skill && skill.detail && (
-                        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                          {skill.detail}
-                        </p>
-                      )}
-                    </div>
+                    <FlipCard className="h-full min-h-[90px]">
+                      {/* FRONT */}
+                      <div className="flex items-start gap-4 p-5 h-full rounded-xl border border-border bg-card group-hover:border-primary/40 shadow-premium group-hover:shadow-floating transition-all duration-300">
+                        <div className="flex max-w-[7rem] flex-wrap gap-2 pt-0.5">
+                          {skill.icons.map((iconName) => (
+                            <TechIcon key={`${skill.name}-${iconName}`} name={iconName} size="sm" />
+                          ))}
+                        </div>
+                        <div>
+                          <span className="font-medium text-foreground group-hover:text-primary transition-colors">
+                            {skill.name}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* BACK */}
+                      <div className="flex flex-col items-center justify-center h-full p-5 rounded-xl border border-primary bg-primary text-primary-foreground shadow-primary-glow">
+                        <span className="font-bold text-center text-sm uppercase tracking-wider mb-1">
+                          {skill.name}
+                        </span>
+                        <div className="flex items-center gap-1.5 text-[10px] font-semibold bg-white/20 px-2 py-0.5 rounded-full">
+                          <Sparkles className="w-3 h-3" />
+                          {locale === 'fr' ? 'MAÎTRISÉ' : 'MASTERED'}
+                        </div>
+                      </div>
+                    </FlipCard>
                   </motion.div>
                 ))}
               </motion.div>

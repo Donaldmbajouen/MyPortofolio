@@ -13,6 +13,9 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+import { useEffect } from 'react';
+import { useMotionValue, useSpring, useTransform } from 'framer-motion';
+
 const floatingItems = [
   { Icon: Code2, className: 'left-[6%] top-[12%] text-primary/14', size: 34, delay: 0 },
   { Icon: Braces, className: 'left-[16%] top-[58%] text-primary/10', size: 42, delay: 0.4 },
@@ -28,14 +31,40 @@ const floatingItems = [
 ];
 
 const FloatingBackground = () => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      mouseX.set((clientX / innerWidth) - 0.5);
+      mouseY.set((clientY / innerHeight) - 0.5);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const x1 = useTransform(springX, [-0.5, 0.5], ['-30px', '30px']);
+  const y1 = useTransform(springY, [-0.5, 0.5], ['-30px', '30px']);
+  const x2 = useTransform(springX, [-0.5, 0.5], ['40px', '-40px']);
+  const y2 = useTransform(springY, [-0.5, 0.5], ['40px', '-40px']);
+
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.12),transparent_28%),radial-gradient(circle_at_80%_20%,hsl(var(--primary)/0.08),transparent_24%),radial-gradient(circle_at_bottom_right,hsl(var(--primary)/0.1),transparent_30%)]" />
+      <motion.div 
+        style={{ x: x1, y: y1 }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.12),transparent_28%),radial-gradient(circle_at_80%_20%,hsl(var(--primary)/0.08),transparent_24%),radial-gradient(circle_at_bottom_right,hsl(var(--primary)/0.1),transparent_30%)]" 
+      />
 
-      <div className="absolute left-[8%] top-[14%] h-52 w-52 rounded-full bg-primary/6 blur-3xl" />
-      <div className="absolute right-[10%] top-[24%] h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute bottom-[12%] left-[22%] h-56 w-56 rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute bottom-[8%] right-[18%] h-72 w-72 rounded-full bg-primary/6 blur-3xl" />
+      <motion.div style={{ x: x2, y: y2 }} className="absolute left-[8%] top-[14%] h-52 w-52 rounded-full bg-primary/6 blur-3xl" />
+      <motion.div style={{ x: x1, y: y2 }} className="absolute right-[10%] top-[24%] h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
+      <motion.div style={{ x: x2, y: y1 }} className="absolute bottom-[12%] left-[22%] h-56 w-56 rounded-full bg-primary/5 blur-3xl" />
+      <motion.div style={{ x: x1, y: x2 }} className="absolute bottom-[8%] right-[18%] h-72 w-72 rounded-full bg-primary/6 blur-3xl" />
 
       {floatingItems.map(({ Icon, className, size, delay }, index) => (
         <motion.div

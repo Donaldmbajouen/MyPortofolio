@@ -89,7 +89,7 @@ const projects = [
   {
     title: "Tech Temple site",
     description: {
-      fr: "Site vitrine full stack développé avec Laravel et Blade, avec identité graphique soignée, structure corporate et animations de scroll.",
+      fr: "Site vitrine proffessionnelle et full stack pour une startup informatique développé avec Laravel et Blade, avec identité graphique soignée, structure corporate et animations de scroll.",
       en: "A full stack showcase website built with Laravel and Blade, featuring a polished visual identity, corporate structure, and scroll animations.",
     },
     technologies: ["Laravel", "Blade", "PHP", "Tailwind"],
@@ -258,8 +258,8 @@ const ProjectsSection = () => {
                 onClick={() => setCategoryFilter(cat.id)}
                 className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   categoryFilter === cat.id
-                    ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20'
-                    : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30'
+                    ? 'bg-primary text-primary-foreground shadow-primary-glow scale-[1.02]'
+                    : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 shadow-premium'
                 }`}
               >
                 {cat.label}
@@ -312,9 +312,9 @@ const ProjectsSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
               >
-                <TiltCard className="h-full flex flex-col overflow-hidden">
+                <TiltCard className="h-full overflow-hidden transition-all group flex flex-col">
                   {project.image && (
-                    <div className="w-full h-40 overflow-hidden bg-muted flex-shrink-0">
+                    <div className="w-full h-48 overflow-hidden rounded-t-lg">
                       <img 
                         src={project.image} 
                         alt={project.title}
@@ -323,7 +323,7 @@ const ProjectsSection = () => {
                     </div>
                   )}
                   
-                  <div className="flex flex-col flex-1 p-6">
+                  <div className="flex-1 flex flex-col p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="outline" className="text-xs">
@@ -335,24 +335,28 @@ const ProjectsSection = () => {
                           </Badge>
                         )}
                       </div>
-                      <div className="flex gap-2 flex-shrink-0 pointer-events-auto">
+                      <div className="flex gap-2 relative z-20 pointer-events-auto">
                         {project.github && (
-                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer z-10 relative">
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer hover:shadow-lg">
                             <Github className="w-4 h-4" />
                           </a>
                         )}
                         {project.live && (
-                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer z-10 relative">
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer hover:shadow-lg">
                             <ExternalLink className="w-4 h-4" />
                           </a>
                         )}
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    <h3 
+                      className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors"
+                    >
                       {project.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
+                    <p 
+                      className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1"
+                    >
                       {project.description[locale]}
                     </p>
 
