@@ -70,6 +70,7 @@ export const TiltCard = ({ children, className = "", noStyle = false }: TiltCard
       <div
         style={{
           transformStyle: "preserve-3d",
+          pointerEvents: "auto",
         }}
       >
         {children}

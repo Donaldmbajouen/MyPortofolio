@@ -324,7 +324,7 @@ const ProjectsSection = () => {
                   )}
                   
                   <div className="flex flex-col flex-1 p-6">
-                    <div className="flex items-start justify-between mb-4 mb-auto">
+                    <div className="flex items-start justify-between mb-4">
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="outline" className="text-xs">
                           {categoryLabels[project.category] ?? project.category}
@@ -335,14 +335,14 @@ const ProjectsSection = () => {
                           </Badge>
                         )}
                       </div>
-                      <div className="flex gap-2 flex-shrink-0">
+                      <div className="flex gap-2 flex-shrink-0 pointer-events-auto">
                         {project.github && (
-                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer" onClick={(e) => e.stopPropagation()}>
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer z-10 relative">
                             <Github className="w-4 h-4" />
                           </a>
                         )}
                         {project.live && (
-                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer" onClick={(e) => e.stopPropagation()}>
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer z-10 relative">
                             <ExternalLink className="w-4 h-4" />
                           </a>
                         )}
