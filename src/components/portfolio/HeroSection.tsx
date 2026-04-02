@@ -21,10 +21,10 @@ const HeroSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/8 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
         {/* Text */}
         <motion.div
-          className="flex flex-col items-center text-center md:items-start md:text-left"
+          className="flex flex-col items-center text-center md:items-start md:text-left max-w-md md:max-w-none"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -69,12 +69,12 @@ const HeroSection = () => {
 
         {/* Photo - Large portrait, no border */}
         <motion.div
-          className="flex justify-center md:justify-end"
+          className="flex justify-center md:justify-end items-center"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <TiltCard noStyle className="relative w-full max-w-[320px] h-[30rem] md:max-w-[450px] md:h-[42rem]">
+          <TiltCard noStyle className="relative w-full max-w-xs h-80 md:max-w-md md:h-[28rem]">
             <img 
               src={donaldPhoto} 
               alt="Donald Njemi" 
