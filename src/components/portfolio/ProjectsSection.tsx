@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
+import TiltCard from './TiltCard';
 import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,18 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const projects = [
   {
+    title: "ProCAD",
+    description: {
+      fr: "Site de présentation professionnelle d'une entreprise de BTP moderne avec portfolio de services et réalisations, animations fluides et design responsive.",
+      en: "A modern professional showcase website featuring services and project portfolio with smooth animations and responsive design.",
+    },
+    technologies: ["React", "TypeScript", "Tailwind", "Framer Motion", "shadcn/ui"],
+    category: "showcase",
+    github: "https://github.com/Donaldmbajouen/procad",
+    live: "https://procad.vercel.app/",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop"
+  },
+  {
     title: "Bonne Année 2026",
     description: {
       fr: "Mini-site créatif et interactif conçu pour souhaiter la bonne année avec une expérience visuelle festive et responsive.",
@@ -15,7 +28,8 @@ const projects = [
     },
     technologies: ["Frontend", "Responsive", "Animations"],
     category: "showcase",
-    live: "https://bonne-annee-2026.vercel.app/"
+    live: "https://bonne-annee-2026.vercel.app/",
+    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=300&fit=crop"
   },
   {
     title: "Mauly Cake",
@@ -25,7 +39,8 @@ const projects = [
     },
     technologies: ["Next.js", "TypeScript", "Tailwind"],
     category: "showcase",
-    live: "https://mauly-cake.vercel.app/"
+    live: "https://mauly-cake.vercel.app/",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=300&fit=crop"
   },
   {
     title: "Biyem-Assi Connect",
@@ -35,7 +50,8 @@ const projects = [
     },
     technologies: ["TypeScript", "React", "Tailwind"],
     category: "platform",
-    live: "https://biyem-assi-connect.vercel.app/"
+    live: "https://biyem-assi-connect.vercel.app/",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop"
   },
   {
     title: "Restaurant Donald",
@@ -45,7 +61,8 @@ const projects = [
     },
     technologies: ["TypeScript", "React", "PWA", "Tailwind"],
     category: "platform",
-    live: "https://restaurant-donald.vercel.app/"
+    live: "https://restaurant-donald.vercel.app/",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&h=300&fit=crop"
   },
   {
     title: "Electronique Boutique",
@@ -55,7 +72,8 @@ const projects = [
     },
     technologies: ["TypeScript", "React", "Tailwind", "E-commerce"],
     category: "ecommerce",
-    live: "https://electronique-boutique.vercel.app/"
+    live: "https://electronique-boutique.vercel.app/",
+    image: "https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?w=500&h=300&fit=crop"
   },
   {
     title: "Laravel Bootcamp",
@@ -65,10 +83,11 @@ const projects = [
     },
     technologies: ["Laravel", "PHP", "Blade", "MySQL"],
     category: "platform",
-    live: "https://laravel-bootcamp-three.vercel.app/"
+    live: "https://laravel-bootcamp-three.vercel.app/",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
   },
   {
-    title: "Raoul Project",
+    title: "Tech Temple site",
     description: {
       fr: "Site vitrine full stack développé avec Laravel et Blade, avec identité graphique soignée, structure corporate et animations de scroll.",
       en: "A full stack showcase website built with Laravel and Blade, featuring a polished visual identity, corporate structure, and scroll animations.",
@@ -76,7 +95,8 @@ const projects = [
     technologies: ["Laravel", "Blade", "PHP", "Tailwind"],
     category: "showcase",
     github: "https://github.com/Donaldmbajouen/raoul_project",
-    live: "https://raoul-project.vercel.app"
+    live: "https://techtemple.site/",
+    image: "https://images.unsplash.com/photo-1460925895917-adf4e9482965?w=500&h=300&fit=crop"
   },
   {
     title: "Local Pro Connect",
@@ -86,7 +106,8 @@ const projects = [
     },
     technologies: ["TypeScript", "React", "Tailwind"],
     category: "platform",
-    github: "https://github.com/Donaldmbajouen/local-pro-connect"
+    github: "https://github.com/Donaldmbajouen/local-pro-connect",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop"
   },
   {
     title: "EduAI Backend",
@@ -96,7 +117,8 @@ const projects = [
     },
     technologies: ["Laravel", "PHP", "REST API", "AI"],
     category: "backend",
-    github: "https://github.com/Donaldmbajouen/EduAI_back"
+    github: "https://github.com/Donaldmbajouen/EduAI_back",
+    image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=300&fit=crop"
   },
   {
     title: "Yuisy",
@@ -107,6 +129,7 @@ const projects = [
     technologies: ["Laravel", "PHP 8.2", "MySQL", "QR Code"],
     category: "backend",
     repositoryVisibility: "private",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=300&fit=crop"
   },
   {
     title: "Yuisy Ticket",
@@ -117,6 +140,7 @@ const projects = [
     technologies: ["Vue 3", "Vue I18n", "Axios", "Day.js"],
     category: "platform",
     repositoryVisibility: "private",
+    image: "https://images.unsplash.com/photo-1499415479124-0e80d30c0cea?w=500&h=300&fit=crop"
   },
   {
     title: "AfriBusiness",
@@ -127,6 +151,7 @@ const projects = [
     technologies: ["Flutter", "Riverpod", "SQLite", "PDF"],
     category: "mobile",
     repositoryVisibility: "private",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
   },
   {
     title: "Dolicash",
@@ -136,7 +161,8 @@ const projects = [
     },
     technologies: ["Flutter", "Dart", "Finance"],
     category: "mobile",
-    github: "https://github.com/Donaldmbajouen/dolicash2"
+    github: "https://github.com/Donaldmbajouen/dolicash2",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=300&fit=crop"
   },
   {
     title: "Pharmacie App",
@@ -146,7 +172,8 @@ const projects = [
     },
     technologies: ["Flutter", "Dart", "Gestion"],
     category: "mobile",
-    github: "https://github.com/Donaldmbajouen/pharmacie2"
+    github: "https://github.com/Donaldmbajouen/pharmacie2",
+    image: "https://images.unsplash.com/photo-1576091160550-112173f31c77?w=500&h=300&fit=crop"
   },
   {
     title: "Farmlink",
@@ -156,7 +183,8 @@ const projects = [
     },
     technologies: ["Flutter", "Dart", "AgriTech"],
     category: "mobile",
-    github: "https://github.com/Donaldmbajouen/Farmlink"
+    github: "https://github.com/Donaldmbajouen/Farmlink",
+    image: "https://images.unsplash.com/photo-1574943320219-553eb2f72a32?w=500&h=300&fit=crop"
   }
 ];
 
@@ -283,45 +311,58 @@ const ProjectsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                className="p-6 rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all group"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      {categoryLabels[project.category] ?? project.category}
-                    </Badge>
-                    {project.repositoryVisibility === 'private' && (
-                      <Badge variant="secondary" className="text-xs">
-                        {locale === 'fr' ? 'Code privé' : 'Private code'}
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
-                        <Github className="w-4 h-4" />
-                      </a>
-                    )}
-                    {project.live && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
-                </div>
+                <TiltCard className="h-full flex flex-col overflow-hidden">
+                  {project.image && (
+                    <div className="w-full h-40 overflow-hidden bg-muted flex-shrink-0">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  
+                  <div className="flex flex-col flex-1 p-6">
+                    <div className="flex items-start justify-between mb-4 mb-auto">
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="outline" className="text-xs">
+                          {categoryLabels[project.category] ?? project.category}
+                        </Badge>
+                        {project.repositoryVisibility === 'private' && (
+                          <Badge variant="secondary" className="text-xs">
+                            {locale === 'fr' ? 'Code privé' : 'Private code'}
+                          </Badge>
+                        )}
+                      </div>
+                      <div className="flex gap-2 flex-shrink-0">
+                        {project.github && (
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer" onClick={(e) => e.stopPropagation()}>
+                            <Github className="w-4 h-4" />
+                          </a>
+                        )}
+                        {project.live && (
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all cursor-pointer" onClick={(e) => e.stopPropagation()}>
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
 
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                  {project.description[locale]}
-                </p>
+                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
+                      {project.description[locale]}
+                    </p>
 
-                <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.map((tech, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
-                  ))}
-                </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies.map((tech, i) => (
+                        <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </TiltCard>
               </motion.div>
             ))}
           </div>
