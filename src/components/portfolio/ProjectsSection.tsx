@@ -69,7 +69,7 @@ const projects = [
     live: "https://laravel-bootcamp-three.vercel.app/"
   },
   {
-    title: "Raoul Project",
+    title: "Tech Temple site",
     description: {
       fr: "Site vitrine full stack développé avec Laravel et Blade, avec identité graphique soignée, structure corporate et animations de scroll.",
       en: "A full stack showcase website built with Laravel and Blade, featuring a polished visual identity, corporate structure, and scroll animations.",
@@ -77,7 +77,7 @@ const projects = [
     technologies: ["Laravel", "Blade", "PHP", "Tailwind"],
     category: "showcase",
     github: "https://github.com/Donaldmbajouen/raoul_project",
-    live: "https://raoul-project.vercel.app"
+    live: "https://techtemple.site/"
   },
   {
     title: "Local Pro Connect",
