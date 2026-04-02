@@ -66,13 +66,13 @@ export const TiltCard = ({ children, className = "", noStyle = false }: TiltCard
         rotateX,
         transformStyle: "preserve-3d",
       }}
-      className={`relative h-full w-full ${!noStyle ? 'rounded-2xl bg-card border border-border shadow-premium transition-shadow duration-300 hover:shadow-floating px-6 py-8' : ''} ${className}`}
+      className={`relative h-full w-full ${!noStyle ? 'rounded-2xl bg-card border border-border shadow-premium transition-shadow duration-300 hover:shadow-floating' : ''} ${className}`}
     >
       <div
         style={{
-          transform: "translateZ(75px)",
           transformStyle: "preserve-3d",
         }}
+        className="w-full h-full pointer-events-auto"
       >
         {children}
       </div>

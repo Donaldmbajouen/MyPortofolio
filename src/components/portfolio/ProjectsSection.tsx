@@ -312,9 +312,9 @@ const ProjectsSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
               >
-                <TiltCard className="h-full overflow-hidden transition-all group flex flex-col p-6">
+                <TiltCard className="h-full overflow-hidden transition-all group flex flex-col">
                   {project.image && (
-                    <div className="w-[calc(100%+3rem)] h-48 overflow-hidden rounded-t-lg -mx-6 -mt-6 mb-4">
+                    <div className="w-full h-48 overflow-hidden rounded-t-lg">
                       <img 
                         src={project.image} 
                         alt={project.title}
@@ -323,8 +323,8 @@ const ProjectsSection = () => {
                     </div>
                   )}
                   
-                  <div className="flex-1 flex flex-col">
-                    <div className="flex items-start justify-between mb-4 relative z-10 pointer-events-auto" style={{ transform: "translateZ(50px)" }}>
+                  <div className="flex-1 flex flex-col p-6">
+                    <div className="flex items-start justify-between mb-4">
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="outline" className="text-xs">
                           {categoryLabels[project.category] ?? project.category}
@@ -351,18 +351,16 @@ const ProjectsSection = () => {
 
                     <h3 
                       className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors"
-                      style={{ transform: "translateZ(40px)" }}
                     >
                       {project.title}
                     </h3>
                     <p 
                       className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1"
-                      style={{ transform: "translateZ(30px)" }}
                     >
                       {project.description[locale]}
                     </p>
 
-                    <div className="flex flex-wrap gap-1.5" style={{ transform: "translateZ(20px)" }}>
+                    <div className="flex flex-wrap gap-1.5">
                       {project.technologies.map((tech, i) => (
                         <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
                       ))}
