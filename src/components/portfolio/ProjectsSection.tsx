@@ -6,6 +6,15 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLanguage } from '@/contexts/LanguageContext';
+import prodcadImg from '@/assets/projets/prodcad.png';
+import anneeImg from '@/assets/projets/annee.png';
+import cakeImg from '@/assets/projets/cake.png';
+import byemassiImg from '@/assets/projets/byemassi.png';
+import ecommerceImg from '@/assets/projets/ecommerce.png';
+import bootcampImg from '@/assets/projets/bootcamp.png';
+import restauImg from '@/assets/projets/restau.png';
+import techtempleImg from '@/assets/projets/techtemple.png';
+import sportImg from '@/assets/projets/sport.png';
 
 const projects = [
   {
@@ -17,8 +26,8 @@ const projects = [
     technologies: ["React", "TypeScript", "Tailwind", "Framer Motion", "shadcn/ui"],
     category: "showcase",
     github: "https://github.com/Donaldmbajouen/procad",
-    live: "https://procad.vercel.app/",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop"
+    live: "https://procad-construction.vercel.app/",
+    image: prodcadImg
   },
   {
     title: "Bonne Année 2026",
@@ -29,7 +38,7 @@ const projects = [
     technologies: ["Frontend", "Responsive", "Animations"],
     category: "showcase",
     live: "https://bonne-annee-2026.vercel.app/",
-    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=300&fit=crop"
+    image: anneeImg
   },
   {
     title: "Mauly Cake",
@@ -40,7 +49,7 @@ const projects = [
     technologies: ["Next.js", "TypeScript", "Tailwind"],
     category: "showcase",
     live: "https://mauly-cake.vercel.app/",
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=300&fit=crop"
+    image: cakeImg
   },
   {
     title: "Biyem-Assi Connect",
@@ -51,7 +60,7 @@ const projects = [
     technologies: ["TypeScript", "React", "Tailwind"],
     category: "platform",
     live: "https://biyem-assi-connect.vercel.app/",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop"
+    image: byemassiImg
   },
   {
     title: "Restaurant Donald",
@@ -62,7 +71,7 @@ const projects = [
     technologies: ["TypeScript", "React", "PWA", "Tailwind"],
     category: "platform",
     live: "https://restaurant-donald.vercel.app/",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&h=300&fit=crop"
+    image: restauImg
   },
   {
     title: "Electronique Boutique",
@@ -73,7 +82,7 @@ const projects = [
     technologies: ["TypeScript", "React", "Tailwind", "E-commerce"],
     category: "ecommerce",
     live: "https://electronique-boutique.vercel.app/",
-    image: "https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?w=500&h=300&fit=crop"
+    image: ecommerceImg
   },
   {
     title: "Laravel Bootcamp",
@@ -84,7 +93,7 @@ const projects = [
     technologies: ["Laravel", "PHP", "Blade", "MySQL"],
     category: "platform",
     live: "https://laravel-bootcamp-three.vercel.app/",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
+    image: bootcampImg
   },
   {
     title: "Tech Temple site",
@@ -96,7 +105,7 @@ const projects = [
     category: "showcase",
     github: "https://github.com/Donaldmbajouen/raoul_project",
     live: "https://techtemple.site/",
-    image: "https://images.unsplash.com/photo-1460925895917-adf4e9482965?w=500&h=300&fit=crop"
+    image: techtempleImg
   },
   {
     title: "Local Pro Connect",
@@ -185,6 +194,18 @@ const projects = [
     category: "mobile",
     github: "https://github.com/Donaldmbajouen/Farmlink",
     image: "https://images.unsplash.com/photo-1574943320219-553eb2f72a32?w=500&h=300&fit=crop"
+  },
+  {
+    title: "Fitness Fusion",
+    description: {
+      fr: "Plateforme de fitness moderne avec programmes d'entraînement personnalisés, suivi des progrès et communauté active pour atteindre vos objectifs.",
+      en: "A modern fitness platform with personalized workout programs, progress tracking, and an active community to achieve your fitness goals.",
+    },
+    technologies: ["React", "TypeScript", "Tailwind", "PWA"],
+    category: "platform",
+    github: "https://github.com/Donaldmbajouen/fusion_fitness",
+    live: "https://framino-fitness.vercel.app/",
+    image: sportImg
   }
 ];
 
@@ -192,13 +213,17 @@ const ProjectsSection = () => {
   const { locale, t, messages } = useLanguage();
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [technologyFilter, setTechnologyFilter] = useState('all');
+  const [prodFilter, setProdFilter] = useState(false);
+  const [githubFilter, setGithubFilter] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const technologies = [...new Set(projects.flatMap((project) => project.technologies))].sort((a, b) => a.localeCompare(b));
   const filtered = projects.filter((project) => {
     const matchesCategory = categoryFilter === 'all' || project.category === categoryFilter;
     const matchesTechnology = technologyFilter === 'all' || project.technologies.includes(technologyFilter);
+    const matchesProd = !prodFilter || project.live;
+    const matchesGithub = !githubFilter || project.github;
 
-    return matchesCategory && matchesTechnology;
+    return matchesCategory && matchesTechnology && matchesProd && matchesGithub;
   });
   const visibleProjects = showAll ? filtered : filtered.slice(0, 6);
 
@@ -222,13 +247,15 @@ const ProjectsSection = () => {
   const technologyFilterLabel = locale === 'fr' ? 'Technologie' : 'Technology';
   const technologyFilterPlaceholder = locale === 'fr' ? 'Toutes les technologies' : 'All technologies';
   const resetFiltersLabel = locale === 'fr' ? 'Réinitialiser' : 'Reset';
+  const prodLabel = locale === 'fr' ? 'En prod' : 'Live projects';
+  const githubLabel = locale === 'fr' ? 'Sur GitHub' : 'GitHub only';
   const noProjectsLabel = locale === 'fr'
     ? 'Aucun projet ne correspond aux filtres sélectionnés.'
     : 'No projects match the selected filters.';
 
   useEffect(() => {
     setShowAll(false);
-  }, [categoryFilter, technologyFilter]);
+  }, [categoryFilter, technologyFilter, prodFilter, githubFilter]);
 
   return (
     <section id="projets" data-scroll-section className="py-20 md:py-28">
@@ -251,7 +278,7 @@ const ProjectsSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -267,9 +294,33 @@ const ProjectsSection = () => {
             ))}
           </div>
 
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div className="w-full md:max-w-xs">
-              <p className="mb-2 text-sm font-medium text-foreground">{technologyFilterLabel}</p>
+          {/* Add prod and github filters */}
+          <div className="flex flex-wrap gap-2 justify-center">
+            <button
+              onClick={() => setProdFilter(!prodFilter)}
+              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                prodFilter
+                  ? 'bg-primary text-primary-foreground shadow-primary-glow scale-[1.02]'
+                  : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 shadow-premium'
+              }`}
+            >
+              {prodLabel}
+            </button>
+            <button
+              onClick={() => setGithubFilter(!githubFilter)}
+              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                githubFilter
+                  ? 'bg-primary text-primary-foreground shadow-primary-glow scale-[1.02]'
+                  : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 shadow-premium'
+              }`}
+            >
+              {githubLabel}
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between items-center justify-center">
+            <div className="w-full md:max-w-xs md:w-auto">
+              <p className="mb-2 text-sm font-medium text-foreground text-center md:text-left">{technologyFilterLabel}</p>
               <Select value={technologyFilter} onValueChange={setTechnologyFilter}>
                 <SelectTrigger className="h-11 rounded-xl border-border bg-card">
                   <SelectValue placeholder={technologyFilterPlaceholder} />
@@ -285,14 +336,16 @@ const ProjectsSection = () => {
               </Select>
             </div>
 
-            {(categoryFilter !== 'all' || technologyFilter !== 'all') && (
+            {(categoryFilter !== 'all' || technologyFilter !== 'all' || prodFilter || githubFilter) && (
               <Button
                 variant="outline"
                 onClick={() => {
                   setCategoryFilter('all');
                   setTechnologyFilter('all');
+                  setProdFilter(false);
+                  setGithubFilter(false);
                 }}
-                className="w-full rounded-xl md:w-auto"
+                className="rounded-xl md:w-auto w-auto"
               >
                 {resetFiltersLabel}
               </Button>

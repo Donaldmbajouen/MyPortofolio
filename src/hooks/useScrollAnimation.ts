@@ -1,46 +1,26 @@
-import { RefObject, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MutableRefObject, useEffect } from 'react';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export const useScrollAnimation = (containerRef: RefObject<HTMLElement>) => {
+export function useScrollAnimation(ref: MutableRefObject<HTMLDivElement | null>, threshold = 0.1) {
   useEffect(() => {
-    const container = containerRef.current;
+    if (!ref.current) return;
 
-    if (!container) {
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray<HTMLElement>('[data-scroll-section]');
-
-      sections.forEach((section, index) => {
-        gsap.fromTo(
-          section,
-          {
-            autoAlpha: 0,
-            y: index === 0 ? 36 : 72,
-          },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: index === 0 ? 0.9 : 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: section,
-              start: index === 0 ? 'top 90%' : 'top 82%',
-              toggleActions: 'play none none none',
-            },
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute('data-visible', 'true');
           }
-        );
-      });
-    }, container);
+        });
+      },
+      { threshold }
+    );
+
+    const sections = ref.current.querySelectorAll('[data-scroll-section]');
+    sections.forEach((section) => observer.observe(section));
 
     return () => {
-      ctx.revert();
+      sections.forEach((section) => observer.unobserve(section));
+      observer.disconnect();
     };
-  }, [containerRef]);
-};
-
-export default useScrollAnimation;
+  }, [ref, threshold]);
+}
