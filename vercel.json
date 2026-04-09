@@ -26,7 +26,6 @@
     }
   ],
   "env": {
-    "VITE_GA_ID": "@ga_id",
     "VITE_SITE_URL": "https://donald-njemi-portofolio.vercel.app"
   }
 }
