@@ -17,15 +17,15 @@
           "value": "text/plain"
         }
       ]
-    }
-  ],
-  "rewrites": [
+    },
     {
-      "source": "/:path*",
-      "destination": "/"
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
-  ],
-  "env": {
-    "VITE_SITE_URL": "https://donald-njemi-portofolio.vercel.app"
-  }
+  ]
 }
