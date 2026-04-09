@@ -1,5 +1,6 @@
 import { Github, Linkedin, Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import seoConfig from '@/config/seo';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -11,11 +12,11 @@ const Footer = () => {
           © {new Date().getFullYear()} Donald.dev — {t('footer.text')} <Heart className="w-3.5 h-3.5 text-primary fill-primary" /> 🥲
         </p>
         <div className="flex gap-3">
-          <a href="https://github.com/Donaldmbajouen" target="_blank" rel="noopener noreferrer"
+          <a href={seoConfig.social.github} target="_blank" rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors">
             <Github className="w-4 h-4" />
           </a>
-          <a href="https://linkedin.com/in/donald-njemi" target="_blank" rel="noopener noreferrer"
+          <a href={seoConfig.social.linkedin} target="_blank" rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors">
             <Linkedin className="w-4 h-4" />
           </a>

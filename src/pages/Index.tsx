@@ -21,12 +21,14 @@ const Index = () => {
       <FloatingBackground />
       <div className="relative z-10">
         <Navbar />
-        <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
+        <main id="main-content">
+          <HeroSection />
+          <AboutSection />
+          <ExperienceSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <ContactSection />
+        </main>
         <Footer />
       </div>
       <FloatingWhatsApp />

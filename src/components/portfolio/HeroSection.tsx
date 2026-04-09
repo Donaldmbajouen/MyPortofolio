@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import donaldPhoto from '@/assets/donald.png';
 import cvPdf from '@/assets/NJEMI DONALD.pdf';
 import { useLanguage } from '@/contexts/LanguageContext';
+import seoConfig from '@/config/seo';
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -56,11 +57,11 @@ const HeroSection = () => {
 
           {/* Social Links */}
           <div className="mt-8 flex justify-center gap-3 md:justify-start">
-            <a href="https://github.com/Donaldmbajouen" target="_blank" rel="noopener noreferrer"
+            <a href={seoConfig.social.github} target="_blank" rel="noopener noreferrer"
               className="p-3 rounded-xl bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
               <Github className="w-5 h-5" />
             </a>
-            <a href="https://linkedin.com/in/donald-njemi" target="_blank" rel="noopener noreferrer"
+            <a href={seoConfig.social.linkedin} target="_blank" rel="noopener noreferrer"
               className="p-3 rounded-xl bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
               <Linkedin className="w-5 h-5" />
             </a>

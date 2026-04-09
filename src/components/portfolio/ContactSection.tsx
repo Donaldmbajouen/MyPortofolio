@@ -5,15 +5,18 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useLanguage } from '@/contexts/LanguageContext';
+import seoConfig from '@/config/seo';
 import StarfieldBackground from './StarfieldBackground';
 import donaldImage from '@/assets/donald1.png';
 
 const ContactSection = () => {
   const { locale, t } = useLanguage();
+  const phoneHref = `tel:${seoConfig.author.phone.replace(/\s+/g, '')}`;
+  const whatsappHref = `https://wa.me/237679315698`;
 
   const contactInfo = [
-    { icon: Phone, label: t('contact.phone'), value: '+237 679315698', href: 'tel:+237679315698' },
-    { icon: Mail, label: t('contact.email'), value: 'mbajouend@gmail.com', href: 'mailto:mbajouend@gmail.com' },
+    { icon: Phone, label: t('contact.phone'), value: seoConfig.author.phone, href: phoneHref },
+    { icon: Mail, label: t('contact.email'), value: seoConfig.author.email, href: `mailto:${seoConfig.author.email}` },
     { icon: MapPin, label: t('contact.location'), value: t('contact.locationValue') },
   ];
 
@@ -36,7 +39,7 @@ const ContactSection = () => {
     ].join('\n');
 
     window.open(
-      `https://wa.me/237679315698?text=${encodeURIComponent(whatsappMessage)}`,
+      `${whatsappHref}?text=${encodeURIComponent(whatsappMessage)}`,
       '_blank',
       'noopener,noreferrer'
     );
@@ -100,11 +103,11 @@ const ContactSection = () => {
 
             {/* Social */}
             <div className="flex gap-3 pt-4">
-              <a href="https://github.com/Donaldmbajouen" target="_blank" rel="noopener noreferrer"
+              <a href={seoConfig.social.github} target="_blank" rel="noopener noreferrer"
                 className="p-3 rounded-xl bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/in/donald-njemi" target="_blank" rel="noopener noreferrer"
+              <a href={seoConfig.social.linkedin} target="_blank" rel="noopener noreferrer"
                 className="p-3 rounded-xl bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all">
                 <Linkedin className="w-5 h-5" />
               </a>

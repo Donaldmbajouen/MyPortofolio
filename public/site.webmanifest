@@ -1,0 +1,21 @@
+{
+  "name": "Donald.dev",
+  "short_name": "Donald.dev",
+  "description": "Portfolio de Donald Njemi Mbajouen, developpeur full stack web et mobile.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08120d",
+  "theme_color": "#08120d",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

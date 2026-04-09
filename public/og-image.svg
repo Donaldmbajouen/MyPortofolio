@@ -1,0 +1,63 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1120" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1711"/>
+      <stop offset="1" stop-color="#07100C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="150" y1="120" x2="980" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#44C77B" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#1E9E66" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1014 132) rotate(142.847) scale(437.903 304.448)">
+      <stop stop-color="#56E89A" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#56E89A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(208 524) rotate(-11.0523) scale(361.712 221.617)">
+      <stop stop-color="#23B26E" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#23B26E" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="32" fill="url(#bg)"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <g filter="url(#soft)">
+    <ellipse cx="1014" cy="132" rx="220" ry="150" fill="url(#glowA)"/>
+    <ellipse cx="208" cy="524" rx="180" ry="110" fill="url(#glowB)"/>
+  </g>
+
+  <rect x="82" y="82" width="246" height="42" rx="21" fill="rgba(68,199,123,0.14)" stroke="rgba(68,199,123,0.32)"/>
+  <text x="112" y="110" fill="#93F0BC" font-size="20" font-family="Inter, Arial, sans-serif" letter-spacing="0.12em">PORTFOLIO</text>
+
+  <text x="82" y="210" fill="white" font-size="62" font-weight="700" font-family="Inter, Arial, sans-serif">
+    <tspan x="82" dy="0">Donald Njemi</tspan>
+    <tspan x="82" dy="74">Mbajouen</tspan>
+  </text>
+
+  <text x="82" y="366" fill="#D6E6DC" font-size="28" font-family="Inter, Arial, sans-serif">
+    Developpeur full stack web et mobile
+  </text>
+  <text x="82" y="410" fill="#AFC1B6" font-size="24" font-family="Inter, Arial, sans-serif">
+    Laravel, Vue.js, React, Flutter, TypeScript, PHP
+  </text>
+  <text x="82" y="454" fill="#8EA196" font-size="22" font-family="Inter, Arial, sans-serif">
+    Yaounde, Cameroun
+  </text>
+
+  <rect x="82" y="500" width="208" height="52" rx="18" fill="url(#accent)"/>
+  <text x="118" y="534" fill="#05110B" font-size="23" font-weight="700" font-family="Inter, Arial, sans-serif">donald.dev</text>
+
+  <g opacity="0.95">
+    <rect x="752" y="124" width="330" height="382" rx="28" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="782" y="162" width="270" height="22" rx="11" fill="rgba(86,232,154,0.18)"/>
+    <rect x="782" y="208" width="204" height="18" rx="9" fill="rgba(255,255,255,0.12)"/>
+    <rect x="782" y="240" width="238" height="18" rx="9" fill="rgba(255,255,255,0.12)"/>
+    <rect x="782" y="272" width="224" height="18" rx="9" fill="rgba(255,255,255,0.12)"/>
+
+    <rect x="782" y="328" width="112" height="92" rx="18" fill="rgba(68,199,123,0.16)" stroke="rgba(68,199,123,0.2)"/>
+    <rect x="909" y="328" width="143" height="92" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="782" y="438" width="270" height="28" rx="14" fill="rgba(255,255,255,0.09)"/>
+  </g>
+</svg>

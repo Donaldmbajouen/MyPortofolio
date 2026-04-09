@@ -1,3 +1,5 @@
+import seoConfig from '@/config/seo';
+
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 32 32" aria-hidden="true" className="h-7 w-7 fill-current">
     <path d="M19.11 17.24c-.29-.14-1.72-.85-1.99-.95-.27-.1-.46-.14-.66.14-.19.29-.75.95-.92 1.15-.17.19-.34.22-.63.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.59-1.97-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.14-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.14-.66-1.59-.9-2.18-.24-.58-.48-.5-.66-.51h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43s1.05 2.81 1.2 3.01c.14.19 2.05 3.13 4.97 4.39.69.29 1.23.46 1.65.59.69.22 1.31.19 1.8.12.55-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34Z" />
@@ -6,9 +8,11 @@ const WhatsAppIcon = () => (
 );
 
 const FloatingWhatsApp = () => {
+  const whatsappNumber = seoConfig.author.phone.replace(/[^\d]/g, '');
+
   return (
     <a
-      href="https://wa.me/237657795299"
+      href={`https://wa.me/${whatsappNumber}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contacter sur WhatsApp"

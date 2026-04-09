@@ -5,13 +5,17 @@
 export const seoConfig = {
   site: {
     url: "https://donald-njemi-portofolio.vercel.app",
-    title: "Donald Njemi Mbajouen - Développeur Fullstack Web/Mobile",
-    description: "Portfolio de Donald Njemi Mbajouen, développeur fullstack passionné. Spécialisé en React.js, Vue.js, Laravel, Flutter et PHP. 10+ projets réalisés. Basé à Yaounde, Cameroun.",
+    name: "Donald.dev",
+    title: "Donald Njemi Mbajouen - Developpeur Full Stack Laravel, Vue.js, React et Flutter",
+    description: "Portfolio de Donald Njemi Mbajouen, developpeur full stack web et mobile base a Yaounde, Cameroun. Specialise en Laravel, Vue.js, React, Flutter, TypeScript et PHP.",
+    locale: "fr_CM",
+    ogImage: "https://donald-njemi-portofolio.vercel.app/og-image.png",
   },
 
   author: {
     name: "Donald Njemi Mbajouen",
     email: "mbajouend@gmail.com",
+    phone: "+237679315698",
     location: "Yaounde, Cameroun",
     jobTitle: "Développeur Fullstack Web/Mobile",
   },
