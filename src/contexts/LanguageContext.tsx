@@ -83,7 +83,7 @@ const messages = {
         {
           title: 'Développeur Full Stack Laravel / Vue.js',
           company: 'EVERBLUE Solution',
-          period: "Juillet 2025 - Aujourd’hui",
+          period: 'Juin 2025 - Aujourd’hui',
           summary: 'Participation au développement de solutions digitales orientées production et besoins clients.',
           tasks: [
             'Développement de solutions e-commerce adaptées aux besoins métiers.',
@@ -94,7 +94,7 @@ const messages = {
         {
           title: 'Stagiaire en Développement Web',
           company: 'MHTECH',
-          period: 'Juin 2024 - Octobre 2024',
+          period: 'Juin 2024 - Décembre 2024',
           summary: "Immersion pratique dans les tests, l’intégration et le développement de solutions web.",
           tasks: [
             "Participation aux tests des logiciels de l'entreprise.",
@@ -279,7 +279,7 @@ const messages = {
         {
           title: 'Full Stack Developer Laravel / Vue.js',
           company: 'EVERBLUE Solution',
-          period: 'July 2025 - Present',
+          period: 'June 2025 - Present',
           summary: 'Contributing to production-oriented digital solutions aligned with client needs.',
           tasks: [
             'Development of e-commerce solutions tailored to business needs.',
@@ -290,7 +290,7 @@ const messages = {
         {
           title: 'Web Development Intern',
           company: 'MHTECH',
-          period: 'June 2024 - October 2024',
+          period: 'June 2024 - December 2024',
           summary: 'Hands-on experience in testing, integration, and web solution development.',
           tasks: [
             "Participation in the company's software testing activities.",
