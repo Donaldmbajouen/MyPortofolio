@@ -26,7 +26,7 @@ const CubeFace = ({ tech, color, rotate, translateZ }: CubeFaceProps) => (
     </div>
     
     {/* Main Icon */}
-    <div className="relative z-10 transform scale-150 drop-shadow-lg">
+    <div className="relative z-10 transform scale-150 drop-shadow-md">
       <TechIcon name={tech} size="md" />
     </div>
   </div>

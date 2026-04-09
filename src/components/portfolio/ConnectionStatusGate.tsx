@@ -117,7 +117,7 @@ const ConnectionStatusGate = ({ children }: { children: React.ReactNode }) => {
       {children}
       {shouldShow && (
         <div className="fixed inset-0 z-[90] flex items-center justify-center bg-background/95 px-6 backdrop-blur-xl">
-          <div className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] border border-border bg-card shadow-2xl">
+          <div className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] border border-border bg-card shadow-xl">
             <div className="absolute inset-y-0 right-0 hidden w-[42%] bg-gradient-to-l from-primary/10 to-transparent lg:block" />
 
             <div className="grid gap-10 p-8 md:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">

@@ -83,7 +83,7 @@ const FloatingBackground = () => {
             delay,
           }}
         >
-          <div className="rounded-2xl border border-primary/10 bg-card/20 p-4 shadow-[0_0_30px_hsl(var(--primary)/0.06)] backdrop-blur-[2px]">
+          <div className="rounded-2xl border border-primary/10 bg-card/20 p-4 shadow-[0_0_18px_hsl(var(--primary)/0.05)] backdrop-blur-[2px]">
             <Icon size={size} strokeWidth={1.6} />
           </div>
         </motion.div>

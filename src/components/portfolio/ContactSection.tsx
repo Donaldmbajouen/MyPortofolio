@@ -113,7 +113,7 @@ const ContactSection = () => {
 
           {/* Form */}
           <motion.form
-            className="p-8 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md space-y-5 shadow-2xl shadow-primary/10"
+            className="p-8 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md space-y-5 shadow-xl shadow-primary/8"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

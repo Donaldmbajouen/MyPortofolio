@@ -69,9 +69,18 @@ export default {
 				mono: ['JetBrains Mono', 'monospace']
 			},
 			boxShadow: {
-				'card': 'var(--shadow-card)',
-				'hover': 'var(--shadow-hover)',
-				'glow': 'var(--shadow-glow)'
+				sm: '0 1px 2px rgba(15, 23, 42, 0.08)',
+				DEFAULT: '0 2px 6px rgba(15, 23, 42, 0.10)',
+				md: '0 4px 10px rgba(15, 23, 42, 0.12)',
+				lg: '0 10px 22px rgba(15, 23, 42, 0.14)',
+				xl: '0 14px 28px rgba(15, 23, 42, 0.16)',
+				'2xl': '0 18px 36px rgba(15, 23, 42, 0.18)',
+				card: '0 8px 22px rgba(15, 23, 42, 0.12)',
+				hover: '0 14px 30px rgba(15, 23, 42, 0.16)',
+				glow: '0 0 18px hsl(var(--primary) / 0.18)',
+				premium: '0 8px 22px rgba(15, 23, 42, 0.12)',
+				floating: '0 14px 30px rgba(15, 23, 42, 0.16)',
+				'primary-glow': '0 0 18px hsl(var(--primary) / 0.18)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
