@@ -81,6 +81,19 @@ const messages = {
       },
       experiences: [
         {
+          title: 'Développeur Full Stack & Intégrateur de Paiement',
+          company: 'Saamaya Finance',
+          period: 'Mai 2026 - Aujourd\'hui',
+          summary: "Conception et intégration de solutions de paiement robustes, développement d'APIs performantes et déploiement d'applications modernes.",
+          tasks: [
+            'Intégration de passerelles de paiement (Stripe, PayDunya, CinetPay, Mobile Money) dans des applications web.',
+            "Développement d'APIs RESTful performantes avec Node.js et FastAPI.",
+            'Mise en cache et optimisation des performances applicatives avec Redis.',
+            "Déploiement et maintenance de l'infrastructure applicative (CI/CD, Linux, Docker).",
+            "Développement d'interfaces modernes et responsives connectées aux APIs de paiement.",
+          ],
+        },
+        {
           title: 'Développeur Full Stack Laravel / Vue.js',
           company: 'EVERBLUE Solution',
           period: 'Juin 2025 - Aujourd’hui',
@@ -276,6 +289,19 @@ const messages = {
         diplomas: 'Degrees',
       },
       experiences: [
+        {
+          title: 'Full Stack Developer & Payment Integrator',
+          company: 'Freelance',
+          period: 'May 2026 - Present',
+          summary: 'Design and integration of robust payment solutions, development of high-performance APIs, and deployment of modern applications.',
+          tasks: [
+            'Integration of payment gateways (Stripe, PayDunya, CinetPay, Mobile Money) into web applications.',
+            'Development of high-performance RESTful APIs with Node.js and FastAPI.',
+            'Cache management and application performance optimization with Redis.',
+            'Deployment and maintenance of application infrastructure (CI/CD, Linux, Docker).',
+            'Development of modern, responsive interfaces connected to payment APIs.',
+          ],
+        },
         {
           title: 'Full Stack Developer Laravel / Vue.js',
           company: 'EVERBLUE Solution',

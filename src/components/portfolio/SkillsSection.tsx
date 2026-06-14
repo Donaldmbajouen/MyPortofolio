@@ -32,6 +32,9 @@ const SkillsSection = () => {
       icon: Server,
       skills: [
         { name: 'Laravel / PHP', icons: ['laravel', 'php'] },
+        { name: 'Node.js', icons: ['nodejs'] },
+        { name: 'FastAPI', icons: ['fastapi'] },
+        { name: 'Redis', icons: ['redis'] },
         { name: 'MySQL / PostgreSQL', icons: ['mysql', 'postgresql'] },
         { name: 'API RESTful', icons: ['api'] },
         { name: 'Python', icons: ['python'] },
@@ -54,6 +57,7 @@ const SkillsSection = () => {
       skills: [
         { name: 'Git / GitHub / GitLab', icons: ['git', 'github', 'gitlab'] },
         { name: 'Docker', icons: ['docker'] },
+        { name: 'DevOps (CI/CD)', icons: ['devops'] },
         { name: 'VS Code', icons: ['vscode'] },
         { name: 'Postman', icons: ['postman'] },
         { name: 'Trello', icons: ['trello'] },
@@ -64,6 +68,7 @@ const SkillsSection = () => {
       label: messages.skills.categories.ai,
       icon: Sparkles,
       skills: [
+        { name: 'Claude Code', icons: ['claudecode'] },
         { name: 'Cursor', icons: ['cursor'], detail: messages.skills.details.cursor },
         { name: locale === 'fr' ? 'Assistants IA de code' : 'AI Coding Assistants', icons: ['ai'], detail: messages.skills.details.aiCoding },
         { name: 'Prompt Engineering', icons: ['prompt'], detail: messages.skills.details.promptEngineering },

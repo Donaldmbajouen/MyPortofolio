@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Bot, Brain, Figma, FileText, Github, GitBranch, Gitlab, PenTool, Sparkles } from 'lucide-react';
+import { Bot, Brain, Code2, Figma, FileText, Github, GitBranch, Gitlab, PenTool, Sparkles, Terminal } from 'lucide-react';
 
 export type TechIconName =
   | 'android'
@@ -33,7 +33,12 @@ export type TechIconName =
   | 'uxui'
   | 'vscode'
   | 'vue'
-  | 'ai';
+  | 'ai'
+  | 'nodejs'
+  | 'fastapi'
+  | 'redis'
+  | 'devops'
+  | 'claudecode';
 
 type TechIconProps = {
   name: TechIconName;
@@ -275,6 +280,35 @@ const ApiLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
   </IconFrame>
 );
 
+const NodeJsLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
+  <IconFrame size={size} className="bg-slate-950">
+    <svg viewBox="0 0 32 32" className={glyphBySize[size]}>
+      <polygon points="16,5 26,11 26,21 16,27 6,21 6,11" fill="#339933" />
+      <text x="16" y="21" textAnchor="middle" fontSize="11" fontWeight="900" fill="white" fontFamily="sans-serif">N</text>
+    </svg>
+  </IconFrame>
+);
+
+const FastApiLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
+  <IconFrame size={size} className="bg-teal-50">
+    <svg viewBox="0 0 32 32" className={glyphBySize[size]}>
+      <circle cx="16" cy="16" r="11" fill="#059669" />
+      <path fill="white" d="M17 9l-6 9h5v5l6-9h-5z" />
+    </svg>
+  </IconFrame>
+);
+
+const RedisLogo = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
+  <IconFrame size={size} className="bg-red-50">
+    <svg viewBox="0 0 32 32" className={glyphBySize[size]}>
+      <ellipse cx="16" cy="10" rx="10" ry="4" fill="#DC382D" />
+      <path fill="#A41E11" d="M6 10v4c0 2.2 4.5 4 10 4s10-1.8 10-4v-4c0 2.2-4.5 4-10 4S6 12.2 6 10z" />
+      <path fill="#DC382D" d="M6 14v4c0 2.2 4.5 4 10 4s10-1.8 10-4v-4c0 2.2-4.5 4-10 4S6 16.2 6 14z" />
+      <path fill="#A41E11" d="M6 18v3c0 2.2 4.5 4 10 4s10-1.8 10-4v-3c0 2.2-4.5 4-10 4S6 20.2 6 18z" />
+    </svg>
+  </IconFrame>
+);
+
 const TechIcon = ({ name, size = 'md' }: TechIconProps) => {
   switch (name) {
     case 'vue':
@@ -345,6 +379,24 @@ const TechIcon = ({ name, size = 'md' }: TechIconProps) => {
       return (
         <IconFrame size={size} className="bg-fuchsia-50 text-fuchsia-600">
           <Bot className={glyphBySize[size]} strokeWidth={2.1} />
+        </IconFrame>
+      );
+    case 'nodejs':
+      return <NodeJsLogo size={size} />;
+    case 'fastapi':
+      return <FastApiLogo size={size} />;
+    case 'redis':
+      return <RedisLogo size={size} />;
+    case 'devops':
+      return (
+        <IconFrame size={size} className="bg-slate-800 text-emerald-400">
+          <Terminal className={glyphBySize[size]} strokeWidth={2.1} />
+        </IconFrame>
+      );
+    case 'claudecode':
+      return (
+        <IconFrame size={size} className="bg-orange-50 text-[#CC785C]">
+          <Code2 className={glyphBySize[size]} strokeWidth={2.1} />
         </IconFrame>
       );
     case 'prompt':
