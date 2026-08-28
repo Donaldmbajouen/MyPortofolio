@@ -11,6 +11,9 @@ interface ThemeContextType {
   toggleColorMode: () => void;
 }
 
+const THEME_CYCLE: LanguageTheme[] = ['laravel', 'vue', 'flutter'];
+const THEME_CYCLE_INTERVAL_MS = 5 * 60 * 1000;
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const useTheme = () => {
@@ -54,6 +57,17 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const toggleColorMode = () => {
     setColorMode(prev => prev === 'light' ? 'dark' : 'light');
   };
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setLanguageTheme(prev => {
+        const nextIndex = (THEME_CYCLE.indexOf(prev) + 1) % THEME_CYCLE.length;
+        return THEME_CYCLE[nextIndex];
+      });
+    }, THEME_CYCLE_INTERVAL_MS);
+
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <ThemeContext.Provider value={{

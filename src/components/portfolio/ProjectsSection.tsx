@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
-import TiltCard from './TiltCard';
 import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -17,8 +16,21 @@ import techtempleImg from '@/assets/projets/techtemple.png';
 import sportImg from '@/assets/projets/sport.png';
 import layoGlamCareImg from '@/assets/projets/layo-glam-care.jpg';
 import appcevImg from '@/assets/projets/appcev.png';
+import votareaImg from '@/assets/logos/votarea.png';
 
 const projects = [
+  {
+    title: "Votarea",
+    description: {
+      fr: "Projet personnel : plateforme SaaS pour créer et organiser des concours de vote en ligne, avec système de commission intégré pour la monétisation des concours.",
+      en: "Personal project: a SaaS platform to create and run online voting contests, with a built-in commission system to monetize contests.",
+    },
+    technologies: ["React", "TypeScript", "Tailwind", "FastAPI", "Redis"],
+    category: "platform",
+    live: "https://votarea.com/",
+    image: votareaImg,
+    imageFit: "contain"
+  },
   {
     title: "ProCAD",
     description: {
@@ -238,17 +250,13 @@ const ProjectsSection = () => {
   const { locale, t, messages } = useLanguage();
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [technologyFilter, setTechnologyFilter] = useState('all');
-  const [prodFilter, setProdFilter] = useState(false);
-  const [githubFilter, setGithubFilter] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const technologies = [...new Set(projects.flatMap((project) => project.technologies))].sort((a, b) => a.localeCompare(b));
   const filtered = projects.filter((project) => {
     const matchesCategory = categoryFilter === 'all' || project.category === categoryFilter;
     const matchesTechnology = technologyFilter === 'all' || project.technologies.includes(technologyFilter);
-    const matchesProd = !prodFilter || project.live;
-    const matchesGithub = !githubFilter || project.github;
 
-    return matchesCategory && matchesTechnology && matchesProd && matchesGithub;
+    return matchesCategory && matchesTechnology;
   });
   const visibleProjects = showAll ? filtered : filtered.slice(0, 6);
 
@@ -272,15 +280,13 @@ const ProjectsSection = () => {
   const technologyFilterLabel = locale === 'fr' ? 'Technologie' : 'Technology';
   const technologyFilterPlaceholder = locale === 'fr' ? 'Toutes les technologies' : 'All technologies';
   const resetFiltersLabel = locale === 'fr' ? 'Réinitialiser' : 'Reset';
-  const prodLabel = locale === 'fr' ? 'En prod' : 'Live projects';
-  const githubLabel = locale === 'fr' ? 'Sur GitHub' : 'GitHub only';
   const noProjectsLabel = locale === 'fr'
     ? 'Aucun projet ne correspond aux filtres sélectionnés.'
     : 'No projects match the selected filters.';
 
   useEffect(() => {
     setShowAll(false);
-  }, [categoryFilter, technologyFilter, prodFilter, githubFilter]);
+  }, [categoryFilter, technologyFilter]);
 
   return (
     <section id="projets" data-scroll-section className="py-20 md:py-28">
@@ -319,30 +325,6 @@ const ProjectsSection = () => {
             ))}
           </div>
 
-          {/* Add prod and github filters */}
-          <div className="flex flex-wrap gap-2 justify-center">
-            <button
-              onClick={() => setProdFilter(!prodFilter)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                prodFilter
-                  ? 'bg-primary text-primary-foreground shadow-primary-glow scale-[1.02]'
-                  : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 shadow-premium'
-              }`}
-            >
-              {prodLabel}
-            </button>
-            <button
-              onClick={() => setGithubFilter(!githubFilter)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                githubFilter
-                  ? 'bg-primary text-primary-foreground shadow-primary-glow scale-[1.02]'
-                  : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 shadow-premium'
-              }`}
-            >
-              {githubLabel}
-            </button>
-          </div>
-
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between items-center justify-center">
             <div className="w-full md:max-w-xs md:w-auto">
               <p className="mb-2 text-sm font-medium text-foreground text-center md:text-left">{technologyFilterLabel}</p>
@@ -361,14 +343,12 @@ const ProjectsSection = () => {
               </Select>
             </div>
 
-            {(categoryFilter !== 'all' || technologyFilter !== 'all' || prodFilter || githubFilter) && (
+            {(categoryFilter !== 'all' || technologyFilter !== 'all') && (
               <Button
                 variant="outline"
                 onClick={() => {
                   setCategoryFilter('all');
                   setTechnologyFilter('all');
-                  setProdFilter(false);
-                  setGithubFilter(false);
                 }}
                 className="rounded-xl md:w-auto w-auto"
               >
@@ -390,13 +370,13 @@ const ProjectsSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
               >
-                <TiltCard className="h-full overflow-hidden transition-all group flex flex-col">
+                <div className="h-full overflow-hidden rounded-2xl border border-border bg-card shadow-premium transition-shadow duration-300 hover:shadow-floating group flex flex-col">
                   {project.image && (
                     <div className={`w-full h-48 overflow-hidden rounded-t-lg ${project.imageFit === 'contain' ? 'bg-white p-6 flex items-center justify-center' : ''}`}>
-                      <img 
-                        src={project.image} 
+                      <img
+                        src={project.image}
                         alt={project.title}
-                        className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300`}
+                        className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`}
                       />
                     </div>
                   )}
@@ -444,7 +424,7 @@ const ProjectsSection = () => {
                       ))}
                     </div>
                   </div>
-                </TiltCard>
+                </div>
               </motion.div>
             ))}
           </div>
