@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import saamayaLogo from '@/assets/logos/saamaya-finance.jpeg';
 import everblueLogo from '@/assets/logos/everblue.png';
@@ -95,7 +94,6 @@ const TrustedBySection = () => {
       locale === 'fr'
         ? "Entre expériences en entreprise, missions techniques et projets livrés, ces structures ont compté dans mon parcours et dans ma pratique du développement."
         : 'Across professional roles, technical missions, and shipped projects, these organizations have shaped my work and trusted my development practice.',
-    linkLabel: locale === 'fr' ? 'Voir le site' : 'View site',
   };
 
   return (
@@ -113,60 +111,28 @@ const TrustedBySection = () => {
           <p className="max-w-3xl text-muted-foreground">{copy.description}</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {collaborators.map((collaborator, index) => {
-            const content = (
-              <>
-                <div className="flex h-24 w-full items-center justify-center rounded-lg bg-white p-4 shadow-sm">
-                  <img
-                    src={collaborator.logo}
-                    alt={`${collaborator.name} logo`}
-                    className="max-h-16 w-full object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="min-h-[3.75rem]">
-                  <h3 className="text-sm font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-                    {collaborator.name}
-                  </h3>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                    {collaborator.role[locale]}
-                  </p>
-                </div>
-                {collaborator.url && (
-                  <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium text-primary">
-                    {copy.linkLabel}
-                    <ExternalLink className="h-3 w-3" />
-                  </span>
-                )}
-              </>
-            );
-
-            return (
-              <motion.div
-                key={collaborator.name}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
+        <div
+          className="group/marquee relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+        >
+          <div className="flex w-max animate-marquee items-center gap-6 group-hover/marquee:[animation-play-state:paused]">
+            {[...collaborators, ...collaborators].map((collaborator, index) => (
+              <a
+                key={`${collaborator.name}-${index}`}
+                href={collaborator.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={collaborator.name}
+                className="flex h-24 w-40 shrink-0 items-center justify-center rounded-lg border border-border bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-floating"
               >
-                {collaborator.url ? (
-                  <a
-                    href={collaborator.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex h-full min-h-[218px] flex-col gap-4 rounded-xl border border-border bg-background/70 p-4 shadow-premium transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-floating"
-                  >
-                    {content}
-                  </a>
-                ) : (
-                  <article className="group flex h-full min-h-[218px] flex-col gap-4 rounded-xl border border-border bg-background/70 p-4 shadow-premium transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-floating">
-                    {content}
-                  </article>
-                )}
-              </motion.div>
-            );
-          })}
+                <img
+                  src={collaborator.logo}
+                  alt={`${collaborator.name} logo`}
+                  className="max-h-16 w-full object-contain"
+                  loading="lazy"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

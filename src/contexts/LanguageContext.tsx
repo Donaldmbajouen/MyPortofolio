@@ -24,7 +24,7 @@ const messages = {
       greeting: 'Bonjour, je suis',
       role: 'Développeur Full Stack',
       description:
-        'Passionné par le développement web et mobile avec Laravel, Vue.js, Nuxt.js et Flutter. Je crée des applications modernes, performantes et élégantes.',
+        'Passionné par le développement web et mobile avec Laravel, FastApi, Vue.js, React et Flutter. Je crée des applications modernes, performantes et élégantes.',
       contact: 'Me contacter',
       projects: 'Voir mes projets',
       resume: 'Télécharger mon CV',
@@ -33,7 +33,7 @@ const messages = {
       eyebrow: 'Qui suis-je',
       title: 'À Propos De Moi',
       paragraph1:
-        "Développeur passionné basé au Cameroun, je conçois des solutions web et mobiles modernes avec une forte orientation vers l’impact réel. Spécialisé en **Laravel, Vue.js et Flutter**, je développe des applications complètes, de l’idée jusqu’à la mise en production, en mettant l’accent sur la performance, l’expérience utilisateur et la scalabilité.",
+        "Développeur passionné basé au Cameroun, je conçois des solutions web et mobiles modernes avec une forte orientation vers l’impact réel. Spécialisé en **Laravel, FastApi, Vue.js, React et Flutter**, je développe des applications complètes, de l’idée jusqu’à la mise en production, en mettant l’accent sur la performance, l’expérience utilisateur et la scalabilité.",
       paragraph2:
         "Au-delà du code, je m’intéresse à la création de produits utiles et rentables, notamment en Afrique (SaaS, IA, solutions locales). Passionné par l’innovation comme la traduction vocale en temps réel, je combine technique et réflexion produit pour transformer des concepts en applications concrètes qui résolvent de vrais problèmes.",
       stats: {
