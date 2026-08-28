@@ -67,19 +67,18 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Photo - Large portrait, no border */}
+        {/* Photo */}
         <motion.div
           className="flex justify-center md:justify-end items-center"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="relative w-full max-w-xs h-80 md:max-w-md md:h-[28rem]">
-            <img
-              src={donaldPhoto}
-              alt="Donald Njemi"
-              className="w-full h-full object-contain object-bottom"
-            />
+          <div className="flex w-full max-w-sm flex-col gap-3 md:max-w-lg">
+            <div className="h-96 w-full overflow-hidden rounded-2xl border border-border bg-card/40 shadow-premium md:h-[32rem]">
+              <img src={donaldPhoto} alt="Donald Njemi" className="h-full w-full object-contain object-bottom" />
+            </div>
+            <div className="mx-auto h-1.5 w-16 rounded-full bg-primary" />
           </div>
         </motion.div>
       </div>
