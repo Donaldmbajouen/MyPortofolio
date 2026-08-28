@@ -8,6 +8,7 @@ import sofitoulLogo from '@/assets/logos/sofitoul.png';
 import layoLogo from '@/assets/logos/layo-glam-care.webp';
 import techlogo from '@/assets/logos/TT.png';
 import appcevLogo from '@/assets/logos/appcev.png';
+import mhTechnologieLogo from '@/assets/logos/mhtech.jpeg';
 
 const collaborators = [
   {
@@ -27,6 +28,15 @@ const collaborators = [
     },
     logo: everblueLogo,
     url: 'https://everblue.xyz/',
+  },
+   {
+    name: 'MH-Technologie',
+    role: {
+      fr: 'Expérience professionnelle',
+      en: 'Professional experience',
+    },
+    logo:   mhTechnologieLogo,
+    url: 'https://mh-technologie.com/',
   },
   {
     name: 'Votarea',
