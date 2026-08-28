@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import ConnectionStatusGate from "@/components/portfolio/ConnectionStatusGate";
-import CustomCursor from "@/components/portfolio/CustomCursor";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { Analytics } from "@vercel/analytics/react";
@@ -18,7 +17,6 @@ const App = () => (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <CustomCursor />
           <Toaster />
           <Sonner />
           <ConnectionStatusGate>

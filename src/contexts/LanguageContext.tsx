@@ -96,7 +96,7 @@ const messages = {
         {
           title: 'Développeur Full Stack Laravel / Vue.js',
           company: 'EVERBLUE Solution',
-          period: 'Juin 2025 - Aujourd’hui',
+          period: 'Juin 2025 - Mai 2026',
           summary: 'Participation au développement de solutions digitales orientées production et besoins clients.',
           tasks: [
             'Développement de solutions e-commerce adaptées aux besoins métiers.',

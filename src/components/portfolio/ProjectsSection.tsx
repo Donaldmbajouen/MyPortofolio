@@ -15,6 +15,8 @@ import bootcampImg from '@/assets/projets/bootcamp.png';
 import restauImg from '@/assets/projets/restau.png';
 import techtempleImg from '@/assets/projets/techtemple.png';
 import sportImg from '@/assets/projets/sport.png';
+import layoGlamCareImg from '@/assets/projets/layo-glam-care.jpg';
+import appcevImg from '@/assets/projets/appcev.png';
 
 const projects = [
   {
@@ -28,6 +30,29 @@ const projects = [
     github: "https://github.com/Donaldmbajouen/procad",
     live: "https://procad-construction.vercel.app/",
     image: prodcadImg
+  },
+  {
+    title: "Layo Glam Care",
+    description: {
+      fr: "Boutique e-commerce beauté pour une marque de soins cosmétiques, avec catalogue produits, filtres, fiches détaillées, conseils beauté et commande orientée WhatsApp.",
+      en: "A beauty e-commerce store for a cosmetics brand, featuring product catalog browsing, filters, detailed product pages, beauty advice, and WhatsApp-oriented ordering.",
+    },
+    technologies: ["Laravel", "React", "Tailwind", "E-commerce", "SEO"],
+    category: "ecommerce",
+    live: "https://layoglamcare.com/",
+    image: layoGlamCareImg
+  },
+  {
+    title: "APPCEV Africa",
+    description: {
+      fr: "Plateforme institutionnelle pour une association dédiée à la protection de l'enfance, avec pages programmes, projets, impact, signalement confidentiel, newsletter et espace d'administration.",
+      en: "An institutional platform for an organization focused on child protection, with programs, projects, impact pages, confidential reporting, newsletter, and an admin area.",
+    },
+    technologies: ["Laravel", "Livewire", "Filament", "Tailwind", "SEO"],
+    category: "platform",
+    live: "https://appcev-africaorg.org/",
+    image: appcevImg,
+    imageFit: "contain"
   },
   {
     title: "Bonne Année 2026",
@@ -73,17 +98,17 @@ const projects = [
     live: "https://restaurant-donald.vercel.app/",
     image: restauImg
   },
-  {
-    title: "Electronique Boutique",
-    description: {
-      fr: "Boutique e-commerce moderne dédiée aux produits électroniques avec catalogue, promos, navigation par catégories et expérience d'achat fluide.",
-      en: "A modern e-commerce store for electronics with catalog browsing, promotions, category navigation, and a smooth shopping experience.",
-    },
-    technologies: ["TypeScript", "React", "Tailwind", "E-commerce"],
-    category: "ecommerce",
-    live: "https://electronique-boutique.vercel.app/",
-    image: ecommerceImg
-  },
+  // {
+  //   title: "Electronique Boutique",
+  //   description: {
+  //     fr: "Boutique e-commerce moderne dédiée aux produits électroniques avec catalogue, promos, navigation par catégories et expérience d'achat fluide.",
+  //     en: "A modern e-commerce store for electronics with catalog browsing, promotions, category navigation, and a smooth shopping experience.",
+  //   },
+  //   technologies: ["TypeScript", "React", "Tailwind", "E-commerce"],
+  //   category: "ecommerce",
+  //   live: "https://electronique-boutique.vercel.app/",
+  //   image: ecommerceImg
+  // },
   {
     title: "Laravel Bootcamp",
     description: {
@@ -107,17 +132,17 @@ const projects = [
     live: "https://techtemple.site/",
     image: techtempleImg
   },
-  {
-    title: "Local Pro Connect",
-    description: {
-      fr: "Plateforme de mise en relation entre clients et professionnels, avec recherche, profils publics et espace dashboard pour les prestataires.",
-      en: "A platform connecting clients with professionals, including search, public profiles, and a dashboard for service providers.",
-    },
-    technologies: ["TypeScript", "React", "Tailwind"],
-    category: "platform",
-    github: "https://github.com/Donaldmbajouen/local-pro-connect",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop"
-  },
+  // {
+  //   title: "Local Pro Connect",
+  //   description: {
+  //     fr: "Plateforme de mise en relation entre clients et professionnels, avec recherche, profils publics et espace dashboard pour les prestataires.",
+  //     en: "A platform connecting clients with professionals, including search, public profiles, and a dashboard for service providers.",
+  //   },
+  //   technologies: ["TypeScript", "React", "Tailwind"],
+  //   category: "platform",
+  //   github: "https://github.com/Donaldmbajouen/local-pro-connect",
+  //   image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop"
+  // },
   {
     title: "EduAI Backend",
     description: {
@@ -129,50 +154,50 @@ const projects = [
     github: "https://github.com/Donaldmbajouen/EduAI_back",
     image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=300&fit=crop"
   },
-  {
-    title: "Yuisy",
-    description: {
-      fr: "Backend d’une plateforme moderne de billetterie pour créer des événements, gérer plusieurs types de billets, suivre les ventes et contrôler l’accès via QR codes.",
-      en: "Backend for a modern ticketing platform to create events, manage multiple ticket types, track sales, and control access with QR codes.",
-    },
-    technologies: ["Laravel", "PHP 8.2", "MySQL", "QR Code"],
-    category: "backend",
-    repositoryVisibility: "private",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=300&fit=crop"
-  },
-  {
-    title: "Yuisy Ticket",
-    description: {
-      fr: "Frontend de plateforme de billetterie en ligne permettant la découverte d’événements, la réservation de billets, le paiement multi-devises et la gestion organisateur en temps réel.",
-      en: "Frontend for an online ticketing platform enabling event discovery, ticket booking, multi-currency payments, and real-time organizer management.",
-    },
-    technologies: ["Vue 3", "Vue I18n", "Axios", "Day.js"],
-    category: "platform",
-    repositoryVisibility: "private",
-    image: "https://images.unsplash.com/photo-1499415479124-0e80d30c0cea?w=500&h=300&fit=crop"
-  },
-  {
-    title: "AfriBusiness",
-    description: {
-      fr: "Application Flutter de gestion des ventes, du stock et des paiements, conçue pour fonctionner 100% hors ligne avec tableau de bord, statistiques et génération de factures PDF.",
-      en: "A Flutter app for sales, inventory, and payment management, built to work 100% offline with a dashboard, analytics, and PDF invoice generation.",
-    },
-    technologies: ["Flutter", "Riverpod", "SQLite", "PDF"],
-    category: "mobile",
-    repositoryVisibility: "private",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
-  },
-  {
-    title: "Dolicash",
-    description: {
-      fr: "Application mobile orientée gestion financière personnelle avec suivi des transactions et organisation budgétaire.",
-      en: "A mobile app focused on personal finance management, transaction tracking, and budget organization.",
-    },
-    technologies: ["Flutter", "Dart", "Finance"],
-    category: "mobile",
-    github: "https://github.com/Donaldmbajouen/dolicash2",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=300&fit=crop"
-  },
+  // {
+  //   title: "Yuisy",
+  //   description: {
+  //     fr: "Backend d’une plateforme moderne de billetterie pour créer des événements, gérer plusieurs types de billets, suivre les ventes et contrôler l’accès via QR codes.",
+  //     en: "Backend for a modern ticketing platform to create events, manage multiple ticket types, track sales, and control access with QR codes.",
+  //   },
+  //   technologies: ["Laravel", "PHP 8.2", "MySQL", "QR Code"],
+  //   category: "backend",
+  //   repositoryVisibility: "private",
+  //   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=300&fit=crop"
+  // },
+  // {
+  //   title: "Yuisy Ticket",
+  //   description: {
+  //     fr: "Frontend de plateforme de billetterie en ligne permettant la découverte d’événements, la réservation de billets, le paiement multi-devises et la gestion organisateur en temps réel.",
+  //     en: "Frontend for an online ticketing platform enabling event discovery, ticket booking, multi-currency payments, and real-time organizer management.",
+  //   },
+  //   technologies: ["Vue 3", "Vue I18n", "Axios", "Day.js"],
+  //   category: "platform",
+  //   repositoryVisibility: "private",
+  //   image: "https://images.unsplash.com/photo-1499415479124-0e80d30c0cea?w=500&h=300&fit=crop"
+  // },
+  // {
+  //   title: "AfriBusiness",
+  //   description: {
+  //     fr: "Application Flutter de gestion des ventes, du stock et des paiements, conçue pour fonctionner 100% hors ligne avec tableau de bord, statistiques et génération de factures PDF.",
+  //     en: "A Flutter app for sales, inventory, and payment management, built to work 100% offline with a dashboard, analytics, and PDF invoice generation.",
+  //   },
+  //   technologies: ["Flutter", "Riverpod", "SQLite", "PDF"],
+  //   category: "mobile",
+  //   repositoryVisibility: "private",
+  //   image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
+  // },
+  // {
+  //   title: "Dolicash",
+  //   description: {
+  //     fr: "Application mobile orientée gestion financière personnelle avec suivi des transactions et organisation budgétaire.",
+  //     en: "A mobile app focused on personal finance management, transaction tracking, and budget organization.",
+  //   },
+  //   technologies: ["Flutter", "Dart", "Finance"],
+  //   category: "mobile",
+  //   github: "https://github.com/Donaldmbajouen/dolicash2",
+  //   image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=300&fit=crop"
+  // },
   {
     title: "Pharmacie App",
     description: {
@@ -184,17 +209,17 @@ const projects = [
     github: "https://github.com/Donaldmbajouen/pharmacie2",
     image: "https://images.unsplash.com/photo-1576091160550-112173f31c77?w=500&h=300&fit=crop"
   },
-  {
-    title: "Farmlink",
-    description: {
-      fr: "Application mobile AgriTech pensée comme un réseau social pour agriculteurs afin de favoriser les échanges et la mise en relation.",
-      en: "An AgriTech mobile app designed as a social network for farmers to encourage networking and collaboration.",
-    },
-    technologies: ["Flutter", "Dart", "AgriTech"],
-    category: "mobile",
-    github: "https://github.com/Donaldmbajouen/Farmlink",
-    image: "https://images.unsplash.com/photo-1574943320219-553eb2f72a32?w=500&h=300&fit=crop"
-  },
+  // {
+  //   title: "Farmlink",
+  //   description: {
+  //     fr: "Application mobile AgriTech pensée comme un réseau social pour agriculteurs afin de favoriser les échanges et la mise en relation.",
+  //     en: "An AgriTech mobile app designed as a social network for farmers to encourage networking and collaboration.",
+  //   },
+  //   technologies: ["Flutter", "Dart", "AgriTech"],
+  //   category: "mobile",
+  //   github: "https://github.com/Donaldmbajouen/Farmlink",
+  //   image: "https://images.unsplash.com/photo-1574943320219-553eb2f72a32?w=500&h=300&fit=crop"
+  // },
   {
     title: "Fitness Fusion",
     description: {
@@ -367,11 +392,11 @@ const ProjectsSection = () => {
               >
                 <TiltCard className="h-full overflow-hidden transition-all group flex flex-col">
                   {project.image && (
-                    <div className="w-full h-48 overflow-hidden rounded-t-lg">
+                    <div className={`w-full h-48 overflow-hidden rounded-t-lg ${project.imageFit === 'contain' ? 'bg-white p-6 flex items-center justify-center' : ''}`}>
                       <img 
                         src={project.image} 
                         alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300`}
                       />
                     </div>
                   )}
